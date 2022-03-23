@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -116,6 +117,11 @@ class OrderController extends Controller
         $email =$user->email;
         $show =['status'=>'Success','name'=>$name,'address'=>$address,'email'=>$email];
         echo (json_encode($show));
+    }
+
+    public function product(){
+        $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
+        return view ('user.Order.product',compact('product'));
     }
 
 }

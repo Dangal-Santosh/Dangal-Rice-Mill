@@ -122,13 +122,7 @@ Route::post('/place-order',[PaymentController::class,'placeorder'])->name('place
 
 
 
-
-
-
-
-
-
-
+Route::get('/see_products',[OrderController::class,'product'])->name('product');
 
 
 
@@ -148,7 +142,7 @@ Route::get('/editoffers/{id}', [OfferController::class, 'offersedit'])->name('of
 Route::put('/editoffers/{id}', [OfferController::class, 'offersupdate'])->name('offersupdate');
 Route::get('/deleteoffers/{id}', [OfferController::class, 'offersdestroy'])->name('offersdestroy');
 
-//Abouts Controllers
+//Abouts Controllers 
 Route::get('/abouts',[AboutController::class,'aboutsindex'])->name('aboutsindex');
 Route::post('/abouts',[AboutController::class,'aboutscreate'])->name('aboutscreate');
 Route::get('/editabouts/{id}', [AboutController::class, 'aboutsedit'])->name('aboutsedit');
