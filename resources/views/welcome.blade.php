@@ -458,12 +458,15 @@
                             class="block w-60 px-4 py-2  ml-24 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-red-900 border border-transparent rounded-lg active:bg-red-900 hover:bg-red-500 focus:outline-none focus:shadow-outline-red">Dashboard</a>
                         @else
                         <a href="{{ route('login') }}"
-                            class="block w-60 px-4 py-3 ml-32 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-red-900 border border-transparent rounded-lg active:bg-red-900 hover:bg-red-500 focus:outline-none focus:shadow-outline-red">Log
-                            in</a><br><br>
+                        class="block w-60 px-4 py-3 ml-32 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-red-900 border border-transparent rounded-lg active:bg-red-900 hover:bg-red-500 focus:outline-none focus:shadow-outline-red">Log
+                        in</a><br><br>
                         @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="block w-60  py-3  ml-32  text-sm font-medium leading-1 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">Register</a>
                         @endif
+                        <a href="{{ url('see_products') }}"
+                        class="block w-60 px-4 py-3 ml-32 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-900 border border-transparent rounded-lg active:bg-blue-900 hover:bg-blue-500 focus:outline-none focus:shadow-outline-red">See products
+                        </a><br><br>
                         @endauth
                         @endif
                     </div>

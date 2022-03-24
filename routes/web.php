@@ -122,7 +122,8 @@ Route::post('/place-order',[PaymentController::class,'placeorder'])->name('place
 
 
 
-Route::get('/see_products',[OrderController::class,'product'])->name('product');
+Route::get('/buy_products',[OrderController::class,'product'])->name('product');
+Route::get('/see_products',[IndexController::class,'product'])->name('product');
 
 
 

@@ -205,4 +205,10 @@ class IndexController extends Controller
     public function bargraph(){
         return view ('admin.Sales.bargraph');
     }
+
+
+    public function product(){
+        $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
+        return view ('user.pages.product',compact('product'));
+    }
 }
