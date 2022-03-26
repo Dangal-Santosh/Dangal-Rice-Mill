@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="product_id" class="form-label">Products</label>
-                                            <select class="form-select text-danger  fs-3 text-weight-bold"
+                                            <select class="form-select text-danger   text-weight-bold"
                                                 name="product_id" aria-label="Default select example" id="product_id">
                                                 <option selected="selected">---- Select Product ----</option>
                                                 @foreach ($products as $pro)
@@ -92,7 +92,7 @@
                                                 name="category_id" readonly>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="product_quantity" class="text-danger fs-3"> Available
+                                            <label for="product_quantity" class="text-danger"> Available
                                                 Stock</label><br>
                                             <input type="biginteger" class="form-control" id="product_quantity"
                                                 name="product_quantity" readonly>
@@ -171,7 +171,7 @@
                                     <a href="{{ url('/editorder', $order->id) }}" class="btn btn-info btn-sm">Edit</a>
                                     <a href="{{ url('/vieworder', $order->id) }}" class="btn btn-success btn-sm">Pay</a>
                                     <a href="{{ url('/deleteorder', $order->id) }}" class="btn btn-danger btn-sm">Cancel
-                                        Order</a>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

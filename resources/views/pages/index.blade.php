@@ -12,7 +12,7 @@
                             <br><span class=" ml-16 text-2xl">{{ Auth::user()->name }}</span>
                         </h1>
                         <button>
-                            <a href="{{route('orderindex')}}" class="block w-60 px-4 py-2  ml-20 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-900 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">Buy Products</a>
+                            <a href="{{url('buy_products')}}" class="block w-60 px-4 py-2  ml-20 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-900 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">See Products</a>
                         </button> 
                         <button class="block w-60 px-4 py-2  ml-20 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-red-900 border border-transparent rounded-lg active:bg-red-900 hover:bg-red-500 focus:outline-none focus:shadow-outline-red" href="{{ route('logout') }}" onclick="event.preventDefault()
                         document.getElementById('logout-form-a').submit()">Logout

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,8 +14,14 @@
 </head>
 
 <body>
+    <h2 class="title">
+        <div class="login_details">
+             <a  class="btn btn-danger" href="{{ url('login') }}">Login</a>
+         <a  class="btn btn-success" href="{{ url('register') }}">Register</a>
+        </div>
+        All Products
+     </h2>
     <div class="small-container">
-        <h2 class="title">All Products</h2>
         <div class="row1">
             @foreach($product as $pro)
             <div class="col4">
@@ -27,11 +33,10 @@
                             </div>
                             <div class="informations">
                                 <h4>{{ $pro->name }}</h4>
-                                <h6>Rs.{{ $pro->price }}</h6>
+                                <h6>${{ $pro->price }}</h6>
                             </div>
                         </a>
                     </li>
-
                 </ul>
             </div>
 
@@ -42,4 +47,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
         </body>
-</html>
+</html> --}}
