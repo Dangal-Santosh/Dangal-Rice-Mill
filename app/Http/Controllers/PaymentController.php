@@ -40,8 +40,6 @@ class PaymentController extends Controller
         $payment->payment_id = $request->payment_id;
         $payment->save();
 
-
-
         if($request->payment_mode == "Paid With Paypal")
         {
         }

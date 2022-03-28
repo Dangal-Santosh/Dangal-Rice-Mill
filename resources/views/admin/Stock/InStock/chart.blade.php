@@ -52,6 +52,7 @@ Admin DashBoard | Pie Chart
         var data = google.visualization.arrayToDataTable([
             ['Products', 'Quantity'],
             <?php echo $chartData?>
+            
         ]);
 
         var options = {

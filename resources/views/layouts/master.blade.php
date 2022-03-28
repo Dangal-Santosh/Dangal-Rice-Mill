@@ -35,10 +35,10 @@
                     <span class="links_name">Products</span>
                 </a>
             </li>
-            <li class="{{ 'staff' ==request()->path() ? 'active' : '' }}">
-                <a href="{{ ('/staff') }}">
+            <li class="{{ 'user' ==request()->path() ? 'active' : '' }}">
+                <a href="{{ ('/user') }}">
                     <i class='bx bx-user'></i>
-                    <span class="links_name">Staffs</span></a>
+                    <span class="links_name">Users</span></a>
             </li>
             <li class="{{ 'categories' ==request()->path() ? 'active' : '' }}">
                 <a href="{{ ('/categories') }}">
@@ -54,6 +54,16 @@
                   <li><a class="dropdown-item text-danger" href="{{ url('/instock') }}">InStock</a></li>
                   <li><a class="dropdown-item text-danger" href="{{ ('/piechart') }}">Instock Details</a></li>
                   <li><a class="dropdown-item text-danger" href="{{ ('/stock') }}">Total Stock</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class=" dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class='bx bx-receipt'></i>
+                    <span class="links_name">Sales</span></a>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                  <li><a class="dropdown-item text-danger" href="{{ ('/paymentdetails') }}">Sales Details</a></li>
+                  <li><a class="dropdown-item text-danger" href="{{ ('/bargraph') }}">Sales Graph</a></li>
                 </ul>
             </li>
             <li class="log_out">

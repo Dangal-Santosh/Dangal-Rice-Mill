@@ -1,12 +1,13 @@
-@extends('layouts.child')
+@extends('layouts.master')
 @section('title')
-Staff DashBoard | Edit User
+Admin Dashboard | User Details
 @endsection
-@section('staffarea')
-    <div class="container mt-5 ml-3">
-        <div class="row">
-            <h1 class="text-danger">Edit User Details</h1>
-            <div class="col-sm-6">
+@section('sidebar')
+<div class="container mt-1 ml-3">
+    <div class="row">
+        <h1 class="text-dark" style="margin-left: 60px;">Edit User Details</h1>
+        <div class="col-sm-6">
+            <div class="add_products">
                 <form action="" method="POST">
                     @csrf
                     @method('PUT')
@@ -19,8 +20,9 @@ Staff DashBoard | Edit User
                         <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" value="{{ $user->password }}">
+                        {{-- <label for="password" class="form-label">Password</label> --}}
+                        <input type="hidden" class="form-control" id="password" name="password"
+                            value="{{ $user->password }}">
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
@@ -32,12 +34,13 @@ Staff DashBoard | Edit User
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input type="address" class="form-control" id="address" name="address" value="{{ $user->address }}">
+                        <input type="address" class="form-control" id="address" name="address"
+                            value="{{ $user->address }}">
                     </div>
                     <button type="submit" class="btn btn-danger">Update</button><br><br>
-                    </form>
+                </form>
             </div>
         </div>
     </div>
+</div>
 @endsection
-

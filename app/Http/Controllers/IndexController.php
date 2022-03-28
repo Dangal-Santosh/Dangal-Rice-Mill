@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 Use App\Providers\SweetAlertServiceProvider;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
@@ -14,7 +15,6 @@ use App\Models\InStock;
 use App\Models\TotalStock;
 use App\Models\Payment;
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -30,10 +30,6 @@ class IndexController extends Controller
         $roles=Auth::User()->roles;
         if($roles=='Admin'){
             return view('admin.Dashboard.admindashboard');
-        }
-        else if($roles=='Staff'){
-        
-            return view('staff.Dashboard.staffdashboard');
         }
         else{
             return view('pages.index');
@@ -63,9 +59,9 @@ class IndexController extends Controller
         $product_worth = Product::sum('total');
         $search = $request['search'] ?? "";
         if($search != "") {
-            $products = Product::where('name', 'LIKE', "%$search%")->get();
+            $products = Product::where('name', 'LIKE', "%$search%")->paginate(1);
         }else {
-            $products = Product::orderBy('id', 'Asc')->get();
+            $products = Product::orderBy('id', 'Asc')->paginate(1);
         }
         return view ('staff.Dashboard.dashboard',compact('products','product_worth'));
     }
@@ -109,6 +105,22 @@ class IndexController extends Controller
         $arr['chartData']=rtrim($chartData,",");
         return view ('admin.Stock.Instock.chart',$arr,compact('Instocks'));
         }
+
+
+
+        public function bargraph(){
+
+            $payments = Payment::all();
+            $payments=DB::select(DB::raw("SELECT product_name, quantity,product_price, total from payments group by product_name, quantity,product_price, total;"));
+            $barData="";
+            foreach($payments as $payment)
+            {
+                $barData.="['".$payment->product_name."',  ".$payment->product_price.",".$payment->quantity.", ".$payment->total."],";
+    
+            }
+            $arr['barData']=rtrim($barData,",");
+            return view ('admin.Sales.bargraph',$arr,compact('payments'));
+            }
 
 
         // public function search(){
@@ -167,7 +179,7 @@ class IndexController extends Controller
         $order = Order::all();
         $search2 = $request['search2'] ?? "";
         if($search2 != "") {
-            $orders = Order::where('name', 'LIKE', "%$search2%")->get();
+            $orders = Order::where('created_at', 'LIKE', "%$search2%")->get();
         }else {
             $orders = Order::orderBy('id', 'Asc')->get();
         }
@@ -195,20 +207,20 @@ class IndexController extends Controller
         $orders = Order::all();
         $paysearch = $request['paysearch'] ?? "";
         if($paysearch != "") {
-            $payments = Payment::where('name', 'LIKE', "%$paysearch%")->get();
+            $payments = Payment::where('created_at', 'LIKE', "%$paysearch%")->get();
         }else {
             $payments = Payment::orderBy('id', 'Asc')->get();
         }
         return view('admin.Sales.details',compact('orders','users','products','payments','payment'));
     }
 
-    public function bargraph(){
-        return view ('admin.Sales.bargraph');
-    }
+    // public function bargraph(){
+    //     return view ('admin.Sales.bargraph');
+    // }
 
 
-    public function product(){
-        $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
-        return view ('user.pages.product',compact('product'));
-    }
+    // public function product(){
+    //     $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
+    //     return view ('user.pages.product',compact('product'));
+    // }
 }

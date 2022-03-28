@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\InStock;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -80,6 +82,7 @@ class OrderController extends Controller
         $order->quantity =$request->quantity;
         $order->category_id =$request->category_id;
         $order->total =$request->total; 
+        $order->created_at =$request->created_at; 
         $order->save();
         $product = Product::where('id',$order->product_id)->first();
         $product->quantity = $product->quantity - $request->quantity;
@@ -119,9 +122,23 @@ class OrderController extends Controller
         echo (json_encode($show));
     }
 
-    public function product(){
+    // public function product(){
+    //     $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
+    //     return view ('user.Order.product',compact('product'));
+    // }
+
+    public function product(Request $request){
         $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
-        return view ('user.Order.product',compact('product'));
+        $product = Product::all();
+        $in_stocks = InStock::all();
+        $categories = Category::all();
+        $see_product = $request['see_product'] ?? "";
+        if($see_product != "") {
+            $products = Product::where('date', 'LIKE', "%$see_product%")->get();
+        }else {
+            $products = Product::orderBy('id', 'Asc')->get();
+        }
+        return view ('user.Order.Product',compact('in_stocks','categories','products','product'));
     }
 
 }

@@ -1,12 +1,12 @@
-@extends('layouts.child')
+@extends('layouts.master')
 @section('title')
-Staff Dashboard | User Details
+Admin Dashboard | User Details
 @endsection
-@section('staffarea')
+@section('sidebar')
 <div class="container mt-3 ml-3 ">
     <div class="col-sm-9  ml-3">
         <div class="add_products">
-        <h2 class=" text-danger">Total Customers</h2>
+        <h2 class=" text-danger">Total Users</h2>
         <table class="table table-hover ">
             <thead>
                 <tr>
@@ -16,7 +16,7 @@ Staff Dashboard | User Details
                     <th scope="col">Phone</th>
                     <th scope="col">Age</th>
                     <th scope="col">Address</th>
-                    {{-- <th scope="col">Action</th> --}}
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,8 +29,8 @@ Staff Dashboard | User Details
                     <td>{{$user->age}}</td>
                     <td>{{$user->address}}</td>
                     <td>
-                        {{-- <a href="{{ url('/edituser', $user->id) }}" class="btn btn-info btn-sm">Edit</a> --}}
-                        {{-- <a href="{{ url('/deleteuser', $user->id) }}" class="btn btn-danger btn-sm">Delete</a> --}}
+                        <a href="{{ url('/edituser', $user->id) }}" class="btn btn-info btn-sm">Edit</a>
+                        <a href="{{ url('/deleteuser', $user->id) }}" class="btn btn-danger btn-sm">Delete</a> 
                     </td>
                 </tr>
                 @endforeach

@@ -15,53 +15,43 @@
 
 <body>
     <h2 class="title">
-        <div class="login_details">
-
-        </div>
         All Products
     </h2>
+    <form action="">
+        <div class="row" id="see_products">
+            <div class="col-md-5 ">
+            <input type="search" class="form-control p-2  ml-5" id="created_at" placeholder="Search Products"
+                name="see_product" />
+        </div>
+        <div class="col-md-2  pt-1">
+            <button class="btn btn-primary  p-1">
+                Search &rarr;</button>
+        </div>
+    </div>
+    </form>
     <div class="small-container">
         <div class="row1">
-            @foreach($product as $pro)
-            <div class="col4">
-                {{-- <ul class="products">
-                    <li>
-                        <a>
-                            <div class="image">
-                                <img src="{{url("uploads/products")}}/{{ $pro->image}}" alt="p-1" />
-                            </div>
+            @if ($products->count() > 0)
+                @foreach($products as $pro)
+                <div class="col4">
+                    <div class="product">
+                        <div class="image">
+                            <img src="{{url("uploads/products")}}/{{ $pro->image}}" alt="p-1" />
+                        </div>
+                        <div class="product_details">
 
-
-
-                            <div class="informations">
-
-                                <h4>{{ $pro->name }}</h4>
-                                <h6>${{ $pro->price }}</h6>
-
-
-
-                                <a class="btn btn-danger" href="{{ url('order') }}">Buy Products</a>
-                            </div>
-                        </a>
-                    </li>
-                </ul> --}}
-
-                <div class="product">
-                    <div class="image">
-                        <img src="{{url("uploads/products")}}/{{ $pro->image}}" alt="p-1" />
-                    </div>
-                    <div class="product_details">
-
-                        <h4>{{ $pro->name }}</h4>
-                        <h6>${{ $pro->price }}</h6>
-                        <a class="btn btn-danger mb-2" href="{{ url('order') }}">Buy Products</a>
-                    </div>
+                            <h4>{{ $pro->name }}</h4>
+                            <h6>${{ $pro->price }}</h6>
+                            <a class="btn btn-danger mb-2" href="{{ url('order') }}">Buy Products</a>
+                        </div>
+                    </div> 
                 </div>
-
-
+                @endforeach
+            @else
+            <div class="text-danger h1">
+                <span class="">No Products found!!</span>
             </div>
-
-            @endforeach
+            @endif
         </div>
     </div>
     </div>

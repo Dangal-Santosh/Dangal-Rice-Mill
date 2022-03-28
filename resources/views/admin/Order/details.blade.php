@@ -18,7 +18,7 @@ Admin DashBoard | Order Details
                             </a>
                         </div>
                         <div class="col-md-6 ">
-                            <input type="search" class="form-control p-2 mt-4" id="name" placeholder="Search Orders"
+                            <input type="date" class="form-control p-2 mt-4" id="name" placeholder="Search Orders"
                                 name="search2"/>
                         </div>
 
@@ -42,7 +42,8 @@ Admin DashBoard | Order Details
                                 <th>Product Price</th>
                                 <th>Quantity </th>
                                 <th>Total</th>
-                                <th>Qr Code</th>
+                                <th>Created At</th>
+                                {{-- <th>Qr Code</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -58,13 +59,14 @@ Admin DashBoard | Order Details
                                 <td>{{ $order->product_price }}</td>
                                 <td>{{ $order->quantity }}</td>
                                 <td>{{ $order->total }}</td>
-                                <td>
+                                <td>{{ $order->created_at }}</td>
+                                {{-- <td>
                                     <div class="qrcode">
                                         {!! QrCode::size(80)->generate(
                                         " Order ID:$order->id, Customer Name:$order->name, Email:$order->email, Address:$order->address, Product ID:$order->product_id, Product Name:$order->product_name, Product Price:$order->product_price, Quantity:$order->quantity, Total Price:$order->total"
                                         ); !!}
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                             @else
