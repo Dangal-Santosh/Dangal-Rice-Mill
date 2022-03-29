@@ -11,12 +11,22 @@
     <link rel="stylesheet" href="{{ ('css/style2.css') }}">
     <link rel="stylesheet" href="{{ ('css/style.css') }}">
     <title>User | Products</title>
+    
 </head>
 
 <body>
-    <h2 class="title">
-        All Products
-    </h2>
+    <div class="pl-3">
+        <a href="{{url('/homepage')}}">
+            <div class="pt-2 buy_products">
+                <button class="btn btn-danger">
+                    Back
+                </button>
+            </div>
+        </a>
+    </div>
+        <h2 class="title">
+            All Products
+        </h2>
     <form action="">
         <div class="row" id="see_products">
             <div class="col-md-5 ">
@@ -27,7 +37,7 @@
             <button class="btn btn-primary  p-1">
                 Search &rarr;</button>
         </div>
-    </div>
+    </div> <br>
     </form>
     <div class="small-container">
         <div class="row1">
@@ -42,8 +52,7 @@
 
                             <h4>{{ $pro->name }}</h4>
                             <h6>${{ $pro->price }}</h6>
-                            <a class="btn btn-danger mb-2" href="{{ url('/orderProduct') }}/{{ $product->product_id }}">Buy Products</a>
-                            {{-- {{ route('addSeat', ['bus_id' => $bus->bus_id]) }} --}}
+                            <a href="{{ route('productOrder',['id' => $pro->id]) }}" class="btn btn-danger mb-2">Buy Products</a>
                         </div>
                     </div> 
                 </div>

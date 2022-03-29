@@ -17,15 +17,14 @@ Admin DashBoard |Instock
                         @error('category_id'){{$message}}
             
                         @enderror
-                        <br>
                         @error('product_name'){{$message}}
             
                         @enderror
-                        <br>
+
                         @error('quantity'){{$message}}
             
                         @enderror
-                        <br>
+
                         @error('supplier'){{$message}}
             
                         @enderror

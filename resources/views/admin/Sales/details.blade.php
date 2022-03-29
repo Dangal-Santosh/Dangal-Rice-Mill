@@ -27,11 +27,11 @@ Admin DashBoard | Sales Details
                     </div>
                 </div><br><br>
             </form>
-            <h2 class="text-dark">Sales Details</h2><br>
+            <h6 class="text-danger">Sales Details</h6><br>
             <div class="card" >
                 <div class="card-content table-responsive">
                     <table class="table table-hover">
-                        <thead class="text-primary">
+                        <thead class="text-dark">
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>

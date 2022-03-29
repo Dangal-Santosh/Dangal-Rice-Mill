@@ -9,4 +9,5 @@ class InStock extends Model
 {
     use HasFactory;
     protected $table = 'in_stocks';
+    protected $primaryKey = 'id';
 }

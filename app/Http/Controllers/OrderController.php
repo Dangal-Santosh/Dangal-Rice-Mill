@@ -20,17 +20,27 @@ class OrderController extends Controller
         $this->middleware(['auth:sanctum', 'verified']);
     }
 
-    public function orderindex()
-    {   
-        $users =User::all();
-        $orders = Order::all();
-        $user_order = Order::orderBy('created_at','DESC')->where('user_id',Auth::user()->id)->get();
-        $products = Product::all();
-        return view('user.Order.order', ['orders'=>$orders,'products'=>$products,'users'=>$users,'user_order'=>$user_order]);
+    // public function orderindex()
+    // {   
+    //     $users =User::all();
+    //     $orders = Order::all();
+    //     $user_order = Order::orderBy('created_at','DESC')->where('user_id',Auth::user()->id)->get();
+    //     $products = Product::all();
+    //     return view('user.Order.order', ['orders'=>$orders,'products'=>$products,'users'=>$users,'user_order'=>$user_order]);
 
 
+    // }
+    public function productOrder($id) {
+        $this->id = $id;
+        $pro = Product::where('id',$this->id)->first();
+        $orders = Order::orderBy('created_at', 'DESC')
+            ->where('user_id', Auth::user()->id)
+            ->whereDate('created_at', date('Y-m-d'))
+            ->get();
+        return view('user.Order.productorder', compact('pro', 'orders'));
     }
-    public function ordercreate(Request $request)
+
+   public function productordercreate(Request $request)
     {
         
         $this->validate($request, [
@@ -44,7 +54,7 @@ class OrderController extends Controller
             'total' => 'required',
             'product_price' => 'required',
             'quantity' => 'required',
-            'image' => 'image|nullable'
+            'image' => 'required'
         ]);
 
         Alert::success('Order Placed Successfully !!!', 'Orders');
@@ -60,14 +70,6 @@ class OrderController extends Controller
         $order->quantity =$request->quantity;
         $order->category_name =$request->category_name;
         $order->image =$request->image;
-        // if($request->hasfile('image'))
-        // {
-        //     $file = $request->file('image');
-        //     $extention = $file->getClientOriginalExtension();
-        //     $filename = time().'.'.$extention;
-        //     $file->move('uploads/products/', $filename);
-        //     $order->image = $filename;
-        // }
         $order->total =$request->total;
         $order->save();
         $product = Product::where('id',$order->product_id)->first();
@@ -75,6 +77,51 @@ class OrderController extends Controller
         $product->save();
         return back();
     }
+    // public function ordercreate(Request $request)
+    // {
+        
+    //     $this->validate($request, [
+    //         'user_id' => 'required',
+    //         'name' => 'required',
+    //         'email' => 'required',
+    //         'address' => 'required',
+    //         'product_id' => 'required',
+    //         'category_name' => 'required',
+    //         'quantity' => 'required',
+    //         'total' => 'required',
+    //         'product_price' => 'required',
+    //         'quantity' => 'required',
+    //         'image' => 'image|nullable'
+    //     ]);
+
+    //     Alert::success('Order Placed Successfully !!!', 'Orders');
+
+    //     $order = new Order;
+    //     $order->user_id =$request->user_id;
+    //     $order->name =$request->name;
+    //     $order->email =$request->email;
+    //     $order->address=$request->address;
+    //     $order->product_id =$request->product_id;
+    //     $order->product_name =$request->product_name;
+    //     $order->product_price =$request->product_price;
+    //     $order->quantity =$request->quantity;
+    //     $order->category_name =$request->category_name;
+    //     $order->image =$request->image;
+    //     // if($request->hasfile('image'))
+    //     // {
+    //     //     $file = $request->file('image');
+    //     //     $extention = $file->getClientOriginalExtension();
+    //     //     $filename = time().'.'.$extention;
+    //     //     $file->move('uploads/products/', $filename);
+    //     //     $order->image = $filename;
+    //     // }
+    //     $order->total =$request->total;
+    //     $order->save();
+    //     $product = Product::where('id',$order->product_id)->first();
+    //     $product->quantity = $product->quantity - $request->quantity;
+    //     $product->save();
+    //     return back();
+    // }
     public function orderedit($id)
     {
         $users = User::all();
@@ -126,7 +173,7 @@ class OrderController extends Controller
         $product = Product::where('id',$order->product_id)->first();
         $product->quantity = $product->quantity - $request->quantity;
         $product->save();
-        return redirect(route('orderindex'));
+        return redirect(route('productOrder'));
     }
     public function orderdestroy($id)
     {
@@ -137,7 +184,7 @@ class OrderController extends Controller
         $products->quantity = $products->quantity + $order->quantity;
         $products->save();
         Order::destroy($id);
-        return redirect(route('orderindex',compact('products','users')));
+        return redirect(route('product',compact('products','users')));
     }
 
     public function get_products($id){

@@ -9,4 +9,5 @@ class TotalStock extends Model
 {
     use HasFactory;
     protected $table ='total_stocks';
+    protected $primaryKey = 'id';
 }

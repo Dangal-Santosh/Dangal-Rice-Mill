@@ -10,7 +10,7 @@ Admin DashBoard | User Details
             <form action="">
                 <div class="row">
                     <div class="col-md-4 ml-5 mt-4 ">
-                        <a href="{{ url('/payment_pdf/pdf') }}" class="btn btn-success text-center">
+                        <a href="{{ url('/user_pdf/pdf') }}" class="btn btn-success text-center">
                             <span class="font-weight-bold text-reset">
                                 User Details</span>
                             <i class='bx bxs-download'></i>

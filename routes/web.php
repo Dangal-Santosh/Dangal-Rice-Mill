@@ -6,7 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductorderController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TotalStockController;
 use App\Http\Controllers\DynamicPDFController;
@@ -15,6 +14,7 @@ use App\Http\Controllers\Backend\StockPDFController;
 use App\Http\Controllers\Backend\InStockPDFController;
 use App\Http\Controllers\Backend\ProductPDFController;
 use App\Http\Controllers\Backend\PaymentPDFController;
+use App\Http\Controllers\Backend\UserPdfController;
 use App\Http\Controllers\OfflinePaymentController;
 use App\Http\Controllers\CategoryController;
 
@@ -39,11 +39,11 @@ Route::get('/piechart',[IndexController::class,'piechart']);
 Route::get('/statics',[IndexController::class,'showStatics']);
 
 //Order Controllers
+Route::get('/buy_products',[OrderController::class,'product'])->name('product');
 Route::get('/get_products/{id}',[OrderController::class,'get_products'])->name('get_products');
 Route::get('/get_users/{id}',[OrderController::class,'get_users'])->name('get_users');
-
-Route::get('/order',[OrderController::class,'orderindex'])->name('orderindex');
-Route::post('/order',[OrderController::class,'ordercreate'])->name('ordercreate');
+Route::get('/orderProduct/{id}',[OrderController::class,'productOrder'])->name('productOrder');
+Route::post('/createOrder',[OrderController::class,'productordercreate'])->name('createOrder');
 Route::get('/editorder/{id}', [OrderController::class, 'orderedit'])->name('orderedit');
 Route::put('/editorder/{id}', [OrderController::class, 'orderupdate'])->name('orderupdate');
 Route::get('/deleteorder/{id}', [OrderController::class, 'orderdestroy'])->name('orderdestroy');
@@ -98,6 +98,7 @@ Route::get('/stock_pdf/pdf',[StockPDFController::class,'pdf']);
 Route::get('/in_stock_pdf/pdf',[InStockPDFController::class,'pdf']);
 Route::get('/product_pdf/pdf',[ProductPDFController::class,'pdf']);
 Route::get('/payment_pdf/pdf',[PaymentPDFController::class,'pdf']);
+Route::get('/user_pdf/pdf',[UserPdfController::class,'pdf']);
 
 
 //QrCode for Products
@@ -111,13 +112,9 @@ Route::post('/place-order',[PaymentController::class,'placeorder'])->name('place
 
 
 
-Route::get('/buy_products',[OrderController::class,'product'])->name('product');
-// Route::get('/see_products',[IndexController::class,'product'])->name('product');
 
 
 
-Route::get('/orderProduct/{product_id}',[ProductOrderController::class,'productOrder'])->name('productorder');
-Route::post('/createorder',[ProductOrderController::class,'productordercreate'])->name('productordercreate');
 
 
 

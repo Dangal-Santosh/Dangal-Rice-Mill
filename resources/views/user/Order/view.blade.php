@@ -49,7 +49,7 @@
             <td class="address">{{ $order->address }}</td>
             <td class="product_id">{{ $order->product_id }}</td>
             <td class="product_name">{{ $order->product_name }}</td>
-            <td class="product_price">{{ $order->product_price }}</td>
+            <td class="product_price">${{ $order->product_price }}</td>
             <td class="category_name">{{ $order->category_name }}</td>
             <td class="quantity">{{ $order->quantity }}</td>
             <td class="total">{{ $order->total }}</td>     
@@ -59,8 +59,7 @@
         @endforeach
         </tbody>
         </table>
-        </div>
-            
+        </div>        
         <div id="paypal-button-container" class="w-25 p-3 mx-auto">
             <a    type= "button" class="btn btn-danger w-100 fw-bold" 
             style="height:5vh"   href="{{   route('cashondelivery', $order) }}" id="cash_payment" >Cash on Delivery | COD </a><br><br>

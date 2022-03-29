@@ -9,6 +9,7 @@ class Payment extends Model
 {
     use HasFactory;
     protected $table="payments";
+    protected $primaryKey = 'id';
 
     public function users(){
         return $this->belongsTo(User::class,'user_id','id');

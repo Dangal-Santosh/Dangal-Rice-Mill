@@ -11,6 +11,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products';
+    protected $primaryKey = 'id';
     protected $fillable = ['id','name', 'price','units','quantity','price','total','product_name', 'category_id','in_stock_id'];
 
     public function categories(){

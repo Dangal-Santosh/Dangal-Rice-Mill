@@ -356,3 +356,23 @@ nav .sidebar-button i {
         display:none;
     }
 }
+
+.make_order {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 1300px;
+    box-shadow: 5px 5px 5px 5px#616060;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.order_view {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 1300px;
+    box-shadow: 5px 5px 5px 5px#616060;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    margin-left: 2%;
+}
+
