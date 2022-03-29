@@ -28,12 +28,12 @@ Admin DashBoard | Order Details
                         </div>
                     </div><br><br>
                 </form>
-                <h2 class=" text-dark">Total Orders</h2>
+                <h6 class=" text-danger">Total Orders</h6>
                 <div class="card-content table-responsive ">
                     <table class="table table-hover ">
-                        <thead class="text-danger">
+                        <thead class="text-dark">
                             <tr>
-                                <th> Order ID</th>
+                                <th>Order ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Address</th>
@@ -74,8 +74,15 @@ Admin DashBoard | Order Details
                                 <span class="">No Orders found!!</span>
                             </div>
                             @endif
+                            
                         </tbody>
+                        
                     </table>
+                    <div class="pageNum">
+                      
+                        {{ $orders->links() }}
+                    </div>
+                   
                 </div>
             </div>
         </div>

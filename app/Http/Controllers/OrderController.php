@@ -20,7 +20,6 @@ class OrderController extends Controller
         $this->middleware(['auth:sanctum', 'verified']);
     }
 
-    // crud for Managing Staffs
     public function orderindex()
     {   
         $users =User::all();
@@ -30,13 +29,26 @@ class OrderController extends Controller
         return view('user.Order.order', ['orders'=>$orders,'products'=>$products,'users'=>$users,'user_order'=>$user_order]);
 
 
-        // $payments = Payment::orderBy('created_at','DESC')->where('user_id',Auth::user()->id)->get();
-        // return view('payment.paymentDetails',compact('payments'));
     }
     public function ordercreate(Request $request)
     {
+        
+        $this->validate($request, [
+            'user_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'product_id' => 'required',
+            'category_name' => 'required',
+            'quantity' => 'required',
+            'total' => 'required',
+            'product_price' => 'required',
+            'quantity' => 'required',
+            'image' => 'image|nullable'
+        ]);
 
         Alert::success('Order Placed Successfully !!!', 'Orders');
+
         $order = new Order;
         $order->user_id =$request->user_id;
         $order->name =$request->name;
@@ -46,7 +58,16 @@ class OrderController extends Controller
         $order->product_name =$request->product_name;
         $order->product_price =$request->product_price;
         $order->quantity =$request->quantity;
-        $order->category_id =$request->category_id;
+        $order->category_name =$request->category_name;
+        $order->image =$request->image;
+        // if($request->hasfile('image'))
+        // {
+        //     $file = $request->file('image');
+        //     $extention = $file->getClientOriginalExtension();
+        //     $filename = time().'.'.$extention;
+        //     $file->move('uploads/products/', $filename);
+        //     $order->image = $filename;
+        // }
         $order->total =$request->total;
         $order->save();
         $product = Product::where('id',$order->product_id)->first();
@@ -65,12 +86,28 @@ class OrderController extends Controller
     {      
         $users = User::all();
         $products = Product::all();
+        $categories = Category::all();
         $orders = Order::where('id',$id)->get();
-        return view('user.Order.view',['orders'=>$orders],['products'=>$products],['users'=>$users]);
+        return view('user.Order.view',['orders'=>$orders],['products'=>$products],['users'=>$users],['categories'=>$categories]);
     }
     public function orderupdate(Request $request, $id)
     {
-        Alert::success('Order Updated Successfully !!!', 'Orders');
+        // $this->validate($request, [
+        //     'user_id' => 'required',
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'address' => 'required',
+        //     'product_id' => 'required',
+        //     'category_name' => 'required',
+        //     'quantity' => 'required',
+        //     'total' => 'required',
+        //     'product_price' => 'required',
+        //     'quantity' => 'required',
+        //     'image' => 'image|nullable'
+        // ]);
+
+        // Alert::success('Order Updated Successfully !!!', 'Orders');
+        
         $order = Order::find($id);
         $order->user_id =$request->user_id;
         $order->name =$request->name;
@@ -80,7 +117,9 @@ class OrderController extends Controller
         $order->product_name =$request->product_name;
         $order->product_price =$request->product_price;
         $order->quantity =$request->quantity;
-        $order->category_id =$request->category_id;
+        $order->category_name =$request->category_name;
+        $order->image =$request->image;
+        
         $order->total =$request->total; 
         $order->created_at =$request->created_at; 
         $order->save();
@@ -107,8 +146,9 @@ class OrderController extends Controller
         $price =$product->price;
         $name =$product->name;
         $quantity =$product->quantity;
-        $category_id =$product->category_id;
-        $response =['status'=>'Success','price'=>$price,'name'=>$name,'quantity'=>$quantity,'category_id'=>$category_id];
+        $category_name =$product->category_name;
+        $image =$product->image;
+        $response =['status'=>'Success','price'=>$price,'name'=>$name,'quantity'=>$quantity,'category_name'=>$category_name,'image'=>$image];
         echo (json_encode($response));
     }
 
@@ -134,7 +174,7 @@ class OrderController extends Controller
         $categories = Category::all();
         $see_product = $request['see_product'] ?? "";
         if($see_product != "") {
-            $products = Product::where('date', 'LIKE', "%$see_product%")->get();
+            $products = Product::where('name', 'LIKE', "%$see_product%")->get();
         }else {
             $products = Product::orderBy('id', 'Asc')->get();
         }

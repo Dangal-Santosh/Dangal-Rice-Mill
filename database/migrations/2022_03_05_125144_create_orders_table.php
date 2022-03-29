@@ -21,7 +21,8 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->foreignId('product_id')->constrained('products');
             $table->string('product_name');
-            $table->string('category_id');
+            $table->string('image');
+            $table->string('category_name');
             $table->string('product_price');
             $table->biginteger('quantity');
             $table->biginteger('total');

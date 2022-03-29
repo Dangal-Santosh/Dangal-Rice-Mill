@@ -12,6 +12,25 @@ Admin DashBoard |Instock
                     data-bs-target="#exampleModal"><i class="bx bx-plus-medical"></i>
                     Add Product
                 </button>
+                <div>
+                    <a class="alert-danger">
+                        @error('category_id'){{$message}}
+            
+                        @enderror
+                        <br>
+                        @error('product_name'){{$message}}
+            
+                        @enderror
+                        <br>
+                        @error('quantity'){{$message}}
+            
+                        @enderror
+                        <br>
+                        @error('supplier'){{$message}}
+            
+                        @enderror
+                    </a>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -54,10 +73,10 @@ Admin DashBoard |Instock
                         </div>
                     </div>
                 </div>
-                <h5 class=" text-dark">Available Stock</h5>
+                <h5 class=" text-danger">Available Stock</h5>
                 <table class="table table-hover">
                     <thead>
-                        <tr class="text-danger">
+                        <tr class="text-dark">
                             <th scope="col">ID</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Quantity</th>

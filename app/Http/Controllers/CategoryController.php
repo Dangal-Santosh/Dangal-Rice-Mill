@@ -23,6 +23,15 @@ class CategoryController extends Controller
     }
     public function categoriescreate(Request $request)
     {
+
+        //Categories Validation
+        $this->validate($request, [
+            'name' => 'required',
+            // 'client' => 'required',
+            // 'description' => 'required',
+            // 'image' => 'image|nullable'
+        ]);
+
         Alert::success('Admin Added Category Successfully !!!', 'CategoryPage');
         $category = new Category;
         $category->name = $request->name;

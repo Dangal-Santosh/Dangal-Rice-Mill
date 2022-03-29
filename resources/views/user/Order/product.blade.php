@@ -42,7 +42,8 @@
 
                             <h4>{{ $pro->name }}</h4>
                             <h6>${{ $pro->price }}</h6>
-                            <a class="btn btn-danger mb-2" href="{{ url('order') }}">Buy Products</a>
+                            <a class="btn btn-danger mb-2" href="{{ url('/orderProduct') }}/{{ $product->product_id }}">Buy Products</a>
+                            {{-- {{ route('addSeat', ['bus_id' => $bus->bus_id]) }} --}}
                         </div>
                     </div> 
                 </div>

@@ -33,7 +33,20 @@ class HomeController extends Controller
 
     public function createe(Request $request)
     {
+        
+        //User Validation
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'age' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
+        ]);
+
         Alert::success('Customer Added Successfully !!!', 'Customers');
+
         $user = new User;
         $user->name = $request->name;
 		$user->email = $request->email;
@@ -57,6 +70,17 @@ class HomeController extends Controller
 
     public function updatee(Request $request, $id)
     {
+        //User Validation
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'age' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
+        ]);
+
         Alert::success('Customer Details Updated Successfully !!!', 'Customers');
         $user = User::find($id);
         $user->name = $request->name;

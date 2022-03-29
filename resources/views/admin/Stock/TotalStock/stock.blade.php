@@ -70,7 +70,7 @@ Admin DashBoard | Total stock
                         </div>
                     </div>
                 </div>
-                <h6 class=" text-dark">Stock Details</h6>
+                <h6 class=" text-danger">Stock Details</h6>
                 <table class="table table-hover">
                     <thead>
                         <tr>

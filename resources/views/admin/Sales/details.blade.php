@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Admin DashBoard | Payment Details
+Admin DashBoard | Sales Details
 @endsection
 
 @section('sidebar')
@@ -12,7 +12,7 @@ Admin DashBoard | Payment Details
                     <div class="col-md-4 ml-5 mt-4 ">
                         <a href="{{ url('/payment_pdf/pdf') }}" class="btn btn-success text-center">
                             <span class="font-weight-bold text-reset">
-                                Payment Details</span>
+                                Sales Details</span>
                             <i class='bx bxs-download'></i>
                         </a>
                     </div>

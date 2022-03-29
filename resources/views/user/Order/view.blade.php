@@ -17,7 +17,6 @@
     <body>
     <br />
     <div class="container">
-
         <h3 align="center">Order Details</h3><br />
         <div class="row">
         <div class="col-md-7" align="right">
@@ -35,6 +34,7 @@
             <th>Product ID</th>
             <th>Product Name</th>
             <th>Product Price</th>
+            <th>Category</th>
             <th>Quantity </th>
             <th>Total</th>
             <th>Order Date</th>
@@ -50,6 +50,7 @@
             <td class="product_id">{{ $order->product_id }}</td>
             <td class="product_name">{{ $order->product_name }}</td>
             <td class="product_price">{{ $order->product_price }}</td>
+            <td class="category_name">{{ $order->category_name }}</td>
             <td class="quantity">{{ $order->quantity }}</td>
             <td class="total">{{ $order->total }}</td>     
             <td class="created_at">{{ $order->created_at }}</td>     
@@ -61,11 +62,8 @@
         </div>
             
         <div id="paypal-button-container" class="w-25 p-3 mx-auto">
-            {{-- <input type="hidden" name="payment_mode" value="COD"> --}}
             <a    type= "button" class="btn btn-danger w-100 fw-bold" 
             style="height:5vh"   href="{{   route('cashondelivery', $order) }}" id="cash_payment" >Cash on Delivery | COD </a><br><br>
-            {{-- {{ ('cashondelivery') }} --}}
-
         </div>
     </div>
     <script src="https://www.paypal.com/sdk/js?client-id=AZb5niAPBcvae6yObV9yul3c3AgrYr1WWO7G2Y0bMIx9X5FyxGBFI_nay7CkqxgMYQLTZt374ir-uxzk&currency=USD"></script>
@@ -91,6 +89,7 @@
                 var product_id = $('.product_id').text();
                 var product_name = $('.product_name').text();
                 var product_price = $('.product_price').text();
+                var category_name = $('.category_name').text();
                 var quantity = $('.quantity').text();
                 var total = $('.total').text();
                 $.ajax({
@@ -105,6 +104,7 @@
                         'product_id':product_id,
                         'product_name':product_name,
                         'product_price' :product_price,
+                        'category_name' :category_name,
                         'quantity':quantity,
                         'total': total,
                         'payment_mode':"Paid with Paypal",

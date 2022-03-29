@@ -9,6 +9,14 @@ Admin DashBoard
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="bx bx-plus-medical"></i>Add Category
         </button>
+        <div>
+            <a class="alert-danger">
+                @error('name'){{$message}}
+    
+                @enderror
+    
+            </a>
+        </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

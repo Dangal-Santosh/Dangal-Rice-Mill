@@ -25,7 +25,6 @@ class PaymentController extends Controller
 
     public function placeorder(Request $request){
 
-        // Alert::success('Order Placed Successfully', 'Please Visit Again!!');
         $payment = new Payment();
         $payment->user_id =Auth::id();
         $payment->name =$request->name;
@@ -33,6 +32,7 @@ class PaymentController extends Controller
         $payment->address=$request->address;
         $payment->product_id =$request->product_id;
         $payment->product_name =$request->product_name;
+        $payment->category_name =$request->category_name;
         $payment->product_price =$request->product_price;
         $payment->quantity =$request->quantity;
         $payment->total =$request->total;
@@ -56,6 +56,7 @@ class PaymentController extends Controller
         $payment->email =$order->email;
         $payment->address=$order->address;
         $payment->product_id =$order->product_id;
+        $payment->category_name =$order->category_name;
         $payment->product_name =$order->product_name;
         $payment->product_price =$order->product_price;
         $payment->quantity =$order->quantity;

@@ -52,12 +52,27 @@ class ProductController extends Controller
 
     public function createee(Request $request)
     {
+
         Alert::success('Product Added Successfully !!!', 'Products');
+
+        //Product Validation
+        $this->validate($request, [
+            'name' => 'required',
+            'quantity' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'category_name' => 'required',
+            'in_stock_id' => 'required',
+            'total' => 'required',
+            'image' => 'image|nullable'
+        ]);
+
         $product = new Product;
         $product->name = $request->name;
         $product->quantity = $request->quantity;
 		$product->price = $request->price;
-		$product->category_id = $request->category_id;
+        $product->category_id = $request->category_id;
+		$product->category_name = $request->category_name;
 		$product->in_stock_id = $request->in_stock_id;
 		$product->total = $request->total;
         if($request->hasfile('image'))
@@ -98,11 +113,25 @@ class ProductController extends Controller
     public function updateee(Request $request, $id)
     {
         Alert::success('Product Updated Successfully !!!', 'Products');
+
+        //Product Validation
+        $this->validate($request, [
+            'name' => 'required',
+            'quantity' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'category_name' => 'required',
+            'in_stock_id' => 'required',
+            'total' => 'required',
+            'image' => 'image|nullable'
+        ]);
+        
         $product = Product::find($id);
         $product->name = $request->name;
         $product->quantity = $request->quantity;
+        $product->category_id = $request->category_id;
 		$product->price = $request->price;
-		$product->category_id = $request->category_id;
+		$product->category_name = $request->category_name;
 		$product->in_stock_id = $request->in_stock_id;
 		$product->total = $request->total;
 
@@ -131,6 +160,13 @@ class ProductController extends Controller
         Product::destroy($id);
         return redirect(route('indexxx'));
 
+    }
+    public function get_category($id){
+
+        $category = Category::where('id',$id)->first();
+        $category_name =$category->name;
+        $resp =['status'=>'Success','category_name'=>$category_name];
+        echo (json_encode($resp));
     }
 
     public function get_stocks($id)

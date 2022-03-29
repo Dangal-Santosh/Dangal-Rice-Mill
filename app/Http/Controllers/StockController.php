@@ -21,6 +21,14 @@ class StockController extends Controller
     public function Instockcreate(Request $request)
     {
         Alert::success('Admin Added Stock Successfully !!!', 'InStock');
+
+        //Instock Validation
+        $this->validate($request, [
+            'product_name' => 'required',
+            'quantity' => 'required',
+            'supplier' => 'required',
+        ]);
+
         $Instock = new InStock;
         $Instock->name = $request->name;
         $Instock->quantity = $request->quantity;

@@ -20,13 +20,6 @@ class IndexController extends Controller
 {
 
     public function homeindex() {
-        // $homepages = DB::table('home_pages')->select('image','name','description')->orderBy('image','desc')->limit(1)->get();
-        // $category = DB::table('categories')->select('image','name')->orderBy('image','desc')->limit(3)->get();
-        // $abouts = DB::table('abouts')->select('image','name','desc')->orderBy('image','desc')->limit(1)->get();
-        // $offers = DB::table('offers')->select('image','name','description','main_header')->orderBy('image','desc')->limit(1)->get();
-        // $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
-        // $contacts = DB::table('contact_us')->select('name','email','address','contact')->orderBy('name','desc')->limit(1)->get();
-
         $roles=Auth::User()->roles;
         if($roles=='Admin'){
             return view('admin.Dashboard.admindashboard');
@@ -122,66 +115,15 @@ class IndexController extends Controller
             return view ('admin.Sales.bargraph',$arr,compact('payments'));
             }
 
-
-        // public function search(){
-
-        //     $search =$_GET['product_item'];
-        //     $products = Product::where('name', 'LIKE', '%' .$search. '%')->get();
-        //     return view('staff.viewproduct', compact('products'));
-    
-    
-        // }
-
-    // public function piechart(Request $request)
-    // {
-    //     $Rice = InStock::where('quantity','rice')->where('Name','Rice')->get()->count();
-    //     $Baking_Goods = InStock::where('baking_goods','phone')->where('Name','Baking_Goods')->get()->count();
-    //     $Bevereges = InStock::where('quantity','beverages')->where('Name','Beverages')->get()->count();       
-    //     $Oils = InStock::where('quantity','olis')->where('Name','oils')->get()->count();       
-    //     $Spices = InStock::where('quantity','spices')->where('Name','Spices')->get()->count();       
-        
-    //     // $laptop_count_18 = InStock::where('quantity','laptop')->where('year','2018')->get()->count();
-    //     // $laptop_count_19 = InStock::where('quantity','laptop')->where('year','2019')->get()->count();
-    //     // $laptop_count_20 = InStock::where('quantity','laptop')->where('year','2020')->get()->count();
-    //     // $tablet_count_18 = InStock::where('quantity','tablet')->where('year','2018')->get()->count();
-    //     // $tablet_count_19 = InStock::where('quantity','tablet')->where('year','2019')->get()->count();
-    //     // $tablet_count_20 = InStock::where('quantity','tablet')->where('year','2020')->get()->count();    
-        
-    //     return view('piechart',compact('Rice','Baking_Goods','Oils','Spices','Beverages'));
-    // }
-
-
-
-
-//     public function showStatics()
-//    {
-    //   $products = DB::table('products')->get('*')->toArray();
-    //   foreach($products as $pro)
-    //    {
-    //       $products[] = array
-    //        (
-    //         'label'=>$pro->name,
-    //         'y'=>$pro->category_id
-    //        ); 
-    //    }
-    //   return view('statics',compact('products'));
-//    }
-
-    // public function orderdetails ()
-    // {
-    //     $orders = Order::all();
-    //     return view('admin.orderdetails',compact('orders'));
-    // }
-
     public function orderdetails(Request $request){
         $users = User::all();
         $products = Product::all();
         $order = Order::all();
         $search2 = $request['search2'] ?? "";
         if($search2 != "") {
-            $orders = Order::where('created_at', 'LIKE', "%$search2%")->get();
+            $orders = Order::where('created_at', 'LIKE', "%$search2%")->paginate(2);
         }else {
-            $orders = Order::orderBy('id', 'Asc')->get();
+            $orders = Order::orderBy('id', 'Asc')->paginate(5);
         }
         return view ('admin.Order.details',compact('users','products','order','orders'));
     }
@@ -214,13 +156,15 @@ class IndexController extends Controller
         return view('admin.Sales.details',compact('orders','users','products','payments','payment'));
     }
 
-    // public function bargraph(){
-    //     return view ('admin.Sales.bargraph');
-    // }
+    public function userdetails(){
 
-
-    // public function product(){
-    //     $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
-    //     return view ('user.pages.product',compact('product'));
-    // }
+        $user = User::all();
+        $usersearch = $request['usersearch'] ?? "";
+        if($usersearch != "") {
+            $users = User::where('created_at', 'LIKE', "%$usersearch%")->get();
+        }else {
+            $users = User::orderBy('id', 'Asc')->get();
+        }
+        return view('admin.User.details',compact('users','user'));
+    }
 }

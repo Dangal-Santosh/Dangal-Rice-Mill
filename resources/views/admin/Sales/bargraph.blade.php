@@ -11,7 +11,7 @@ Admin DashBoard | Sales Graph
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Sales', 'Price', 'Quantity','Total'],
+          ['Sales', 'Price', 'Quantity','Total Income'],
           <?php echo $barData?>     
         ]);
 

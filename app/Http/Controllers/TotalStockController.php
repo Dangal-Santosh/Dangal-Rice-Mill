@@ -22,16 +22,6 @@ class TotalStockController extends Controller
     }
 
 
-    // public function search(){
-
-    //     $search =$_GET['product_item'];
-    //     $products = Product::where('name', 'LIKE', '%' .$search. '%')->get();
-    //     return view('staff.viewproduct', compact('products'));
-
-
-    // }
-
-
     public function create(Request $request)
     {
         Alert::success('Stock Details Added Successfully !!!', 'Total Stock');

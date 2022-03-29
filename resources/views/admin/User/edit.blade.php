@@ -5,7 +5,7 @@ Admin Dashboard | User Details
 @section('sidebar')
 <div class="container mt-1 ml-3">
     <div class="row">
-        <h1 class="text-dark" style="margin-left: 60px;">Edit User Details</h1>
+        <h4 class="text-dark" style="margin-left: 60px;">Edit User Details</h4>
         <div class="col-sm-6">
             <div class="add_products">
                 <form action="" method="POST">

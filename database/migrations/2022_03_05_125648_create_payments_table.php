@@ -24,6 +24,7 @@ class CreatePaymentsTable extends Migration
             $table->string('product_price');
             $table->biginteger('quantity');
             $table->biginteger('total');
+            $table->string('category_name');
             $table->string('payment_mode');
             $table->string('payment_id')->nullable();
             $table->timestamps();

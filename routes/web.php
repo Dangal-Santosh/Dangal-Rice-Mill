@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductorderController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TotalStockController;
 use App\Http\Controllers\DynamicPDFController;
@@ -31,6 +32,7 @@ Route::get('/sdashboard',[IndexController::class,'sdashboard'])->name('sdashboar
 Route::get('/orderdetails',[IndexController::class,'orderdetails'])->name('orderdetails');
 Route::get('/productdetails',[IndexController::class,'productdetails'])->name('productdetails');
 Route::get('/paymentdetails',[IndexController::class,'paymentdetails'])->name('paymentdetails');
+Route::get('/userdetails',[IndexController::class,'userdetails'])->name('userdetails');
 
 Route::get('/bargraph',[IndexController::class,'bargraph']);
 Route::get('/piechart',[IndexController::class,'piechart']);
@@ -80,6 +82,7 @@ Route::get('/deleteinstock/{id}', [StockController::class, 'Instockdestroy'])->n
 
 
 //Product C0ntrollers
+Route::get('/get_categories/{id}',[ProductController::class,'get_category'])->name('get_category');
 Route::get('/get_stocks/{id}',[ProductController::class,'get_stocks'])->name('get_stocks');
 Route::get('/product',[ProductController::class,'indexxx'])->name('indexxx');
 Route::post('/product',[ProductController::class,'createee'])->name('createee');
@@ -109,11 +112,12 @@ Route::post('/place-order',[PaymentController::class,'placeorder'])->name('place
 
 
 Route::get('/buy_products',[OrderController::class,'product'])->name('product');
-Route::get('/see_products',[IndexController::class,'product'])->name('product');
+// Route::get('/see_products',[IndexController::class,'product'])->name('product');
 
 
 
-
+Route::get('/orderProduct/{product_id}',[ProductOrderController::class,'productOrder'])->name('productorder');
+Route::post('/createorder',[ProductOrderController::class,'productordercreate'])->name('productordercreate');
 
 
 

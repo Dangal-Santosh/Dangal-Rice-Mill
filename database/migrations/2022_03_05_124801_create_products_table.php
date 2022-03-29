@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->foreign('in_stock_id')->references('id')->on('in_stocks');
             $table->string('name');
             $table->string('image');
+            $table->string('category_name');
             $table->biginteger('quantity');
             $table->biginteger('price');
             $table->biginteger('total');

@@ -62,8 +62,4 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    // showing relationship between user, product and order
-    // public function products(){
-    //     return $this->belongsTo(Product::class,'order_id');
-    // }
 }

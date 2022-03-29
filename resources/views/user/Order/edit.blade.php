@@ -28,6 +28,50 @@
         <div class="row">
             <div class="col-sm-11" id="ordermade">
                 <h1 class="text-dark">Update Order</h1>
+                <div >
+                    <a class="alert-danger">
+                        @error('id'){{$message}}
+            
+                        @enderror
+                        @error('user_id'){{$message}}
+            
+                        @enderror
+                        @error('name'){{$message}}
+            
+                        @enderror
+                        @error('email'){{$message}}
+            
+                        @enderror
+                        @error('address'){{$message}}
+            
+                        @enderror
+                        @error('product_id'){{$message}}
+            
+                        @enderror
+                        @error('product_name'){{$message}}
+            
+                        @enderror
+                        @error('product_price'){{$message}}
+            
+                        @enderror
+                        @error('quantity'){{$message}}
+            
+                        @enderror
+                        @error('category_name'){{$message}}
+            
+                        @enderror
+                        @error('image'){{$message}}
+            
+                        @enderror
+                        @error('total'){{$message}}
+            
+                        @enderror
+                        @error('created_at'){{$message}}
+            
+                        @enderror
+            
+                    </a>
+                </div>
                 <form action="" method="POST">
                     @csrf
                     @method('PUT')
@@ -68,9 +112,9 @@
                             <input type="biginteger" class="form-control changevalue" id="product_price" name="product_price" value="{{ $order->product_price }}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="category_id" class="form-label">Category </label>
-                            <input type="biginteger" class="form-control " id="category_id"
-                                name="category_id" value="{{ $order->category_id }}" readonly>
+                            <label for="category_name" class="form-label">Category </label>
+                            <input type="biginteger" class="form-control " id="category_name"
+                                name="category_id" value="{{ $order->category_name}}" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="quantity" class="form-label">Quantity</label>
@@ -97,7 +141,7 @@
         })
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>    
+    {{-- <script>    
         $( "#product_id" ).change(function () {  
         var id = $(this).val();
 
@@ -114,7 +158,7 @@
             }
         })
         });
-    </script>
+    </script> --}}
     <script>    
         $( "#product_id" ).change(function () {  
         var id = $(this).val();
