@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-namespace App\Http\Controllers;
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
-
-use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
@@ -14,7 +12,7 @@ use DB;
 use PDF;
 
 
-class DynamicPDFController extends Controller
+class OrderPDFController extends Controller
 {
     public function __construct()
     {
@@ -72,3 +70,4 @@ class DynamicPDFController extends Controller
      return $output;
     }
 }
+

@@ -6,6 +6,30 @@
 </head>
     <div class="container mt-5 ml-3">
         <h2 class=" text-dark">Updating  Stock Details</h2>
+        <div>
+            <a class="alert-danger">
+                @error('name'){{$message}}
+    
+                @enderror
+
+                @error('quantity'){{$message}}
+    
+                @enderror
+
+                @error('supplier'){{$message}}
+    
+                @enderror
+                @error('price'){{$message}}
+    
+                @enderror
+                @error('category'){{$message}}
+    
+                @enderror
+                @error('total'){{$message}}
+    
+                @enderror
+            </a>
+        </div>
             <div class="row">
                 <div class="col-sm-9">
                     <form action="" method="POST">

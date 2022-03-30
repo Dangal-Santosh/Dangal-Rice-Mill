@@ -24,7 +24,7 @@ Admin DashBoard | Product
             </div>
         </div><br><br>
     </form>
-    <h2 class=" text-dark">Total Products</h2>
+    <h6 class=" text-danger">Total Products</h6>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -36,7 +36,7 @@ Admin DashBoard | Product
                 <th scope="col">Total</th>
                 <th scope="col">Category</th>
                 <th scope="col">Image</th>
-                <th scope="col">Qr Code</th>
+                {{-- <th scope="col">Qr Code</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -53,13 +53,13 @@ Admin DashBoard | Product
                 <td>
                     <img src="{{ asset('uploads/products/'.$pro->image) }}" width="90px" height="70px" alt="Image">
                 </td>
-                <td>
+                {{-- <td>
                     <div class="qrcode">
                         {!! QrCode::size(80)->generate(
                         " Product ID:$pro->id, Stock ID:$pro->in_stock_id, Product Name:$pro->name, Product Price:$pro->price, Total Price:$pro->total, Category ID:$pro->category_id, Quantity:$pro->quantity"
                         ); !!}
                     </div>
-                </td>
+                </td> --}}
             </tr>
             @endforeach
             {{-- <h4><span class="text-success">Products Worth: </span>{{ $product_worth }}</h4> --}}

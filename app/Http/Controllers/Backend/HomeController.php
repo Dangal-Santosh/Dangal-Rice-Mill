@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -58,8 +59,6 @@ class HomeController extends Controller
         $user->save();
         return redirect(route('indexx'));
 
-        // $userids = $request ->user_id;
-        // $user->products = $attach ->userids;
     }
 
     public function editt($id)
@@ -72,7 +71,6 @@ class HomeController extends Controller
     {
         //User Validation
         $this->validate($request, [
-            'id' => 'required',
             'name' => 'required',
             'email' => 'required',
             'address' => 'required',
@@ -93,8 +91,6 @@ class HomeController extends Controller
         $user->save();
         return redirect(route('indexx'));
 
-        // $userids = $request ->user_id;
-        // $user->products = $attach ->userids;
 
     }
 
@@ -105,3 +101,4 @@ class HomeController extends Controller
         return redirect(route('indexx'));
     }
 }
+

@@ -19,6 +19,30 @@ Admin DashBoard | Total stock
                         Add Stock Details</span>
 
                 </button>
+                <div>
+                    <a class="alert-danger">
+                        @error('name'){{$message}}
+            
+                        @enderror
+
+                        @error('quantity'){{$message}}
+            
+                        @enderror
+
+                        @error('supplier'){{$message}}
+            
+                        @enderror
+                        @error('price'){{$message}}
+            
+                        @enderror
+                        @error('category'){{$message}}
+            
+                        @enderror
+                        @error('total'){{$message}}
+            
+                        @enderror
+                    </a>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +13,7 @@ use App\Models\Product;
 use App\Models\InStock;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+
 
 class OrderController extends Controller
 {
@@ -229,3 +231,4 @@ class OrderController extends Controller
     }
 
 }
+

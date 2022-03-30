@@ -1,6 +1,6 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -64,3 +64,4 @@ class CategoryController extends Controller
         return redirect(route('categoriesindex'));
     }
 }
+

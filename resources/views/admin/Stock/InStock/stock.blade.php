@@ -14,10 +14,7 @@ Admin DashBoard |Instock
                 </button>
                 <div>
                     <a class="alert-danger">
-                        @error('category_id'){{$message}}
-            
-                        @enderror
-                        @error('product_name'){{$message}}
+                        @error('name'){{$message}}
             
                         @enderror
 
@@ -55,12 +52,6 @@ Admin DashBoard |Instock
                                         <label for="supplier" class="form-label">Supplier Name</label>
                                         <input type="supplier" class="form-control" id="supplier" name="supplier">
                                     </div>
-                                    {{-- <div class="qrcode">
-                                        {!! QrCode::size(200)->generate(
-                                        "Product ID:$Instock->id, Product Name:$Instock->name,
-                                        Quantity:$Instock->quantity, Date: $Instock->date"
-                                        ); !!}
-                                    </div> --}}
                                     <button type="submit" class="btn btn-danger">Add Product</button>
                                 </form>
                                 @if (session()->has('status'))
@@ -80,7 +71,6 @@ Admin DashBoard |Instock
                             <th scope="col">Product Name</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Supplier</th>
-                            {{-- <th scope="col">Qr Code</th> --}}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -91,14 +81,6 @@ Admin DashBoard |Instock
                             <td>{{$in->name}}</td>
                             <td>{{$in->quantity}}</td>
                             <td>{{$in->supplier}}</td>
-                            {{-- <td>
-                                <div class="qrcode">
-                                    {!! QrCode::size(60)->generate(
-                                    "Product ID:$in->id, Product Name:$in->name, Quantity:$in->quantity, Date:
-                                    $in->created_at"
-                                    ); !!}
-                                </div>
-                            </td> --}}
                             <td>
                                 <a href="{{ url('/editinstock', $in->id) }}" class="btn btn-info btn-sm">Edit</a>
                                 {{-- <a href="{{ url('/deleteinstock', $in->id) }}"

@@ -6,6 +6,20 @@ Admin Dashboard | User Details
 <div class="container mt-1 ml-3">
     <div class="row">
         <h4 class="text-dark" style="margin-left: 60px;">Edit User Details</h4>
+        <div>
+            <a class="alert-danger">
+                @error('name'){{$message}}
+                @enderror
+                @error('email'){{$message}}
+                @enderror
+                @error('phone'){{$message}}
+                @enderror
+                @error('address'){{$message}}
+                @enderror
+                @error('age'){{$message}}
+                @enderror
+            </a>
+        </div>
         <div class="col-sm-6">
             <div class="add_products">
                 <form action="" method="POST">

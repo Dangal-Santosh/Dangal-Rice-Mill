@@ -2,21 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\StockController;
-use App\Http\Controllers\TotalStockController;
-use App\Http\Controllers\DynamicPDFController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\StockController;
+use App\Http\Controllers\Backend\TotalStockController;
+use App\Http\Controllers\Backend\OrderPDFController;
+use App\Http\Controllers\backend\PaymentController;
 use App\Http\Controllers\Backend\StockPDFController;
 use App\Http\Controllers\Backend\InStockPDFController;
 use App\Http\Controllers\Backend\ProductPDFController;
 use App\Http\Controllers\Backend\PaymentPDFController;
 use App\Http\Controllers\Backend\UserPdfController;
-use App\Http\Controllers\OfflinePaymentController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Backend\CategoryController;
 
 
 //Middleware 
@@ -36,13 +35,15 @@ Route::get('/userdetails',[IndexController::class,'userdetails'])->name('userdet
 
 Route::get('/bargraph',[IndexController::class,'bargraph']);
 Route::get('/piechart',[IndexController::class,'piechart']);
-Route::get('/statics',[IndexController::class,'showStatics']);
+// Route::get('/statics',[IndexController::class,'showStatics']);
 
 //Order Controllers
 Route::get('/buy_products',[OrderController::class,'product'])->name('product');
 Route::get('/get_products/{id}',[OrderController::class,'get_products'])->name('get_products');
 Route::get('/get_users/{id}',[OrderController::class,'get_users'])->name('get_users');
+
 Route::get('/orderProduct/{id}',[OrderController::class,'productOrder'])->name('productOrder');
+Route::post('/createOrder',[OrderController::class,'productordercreate'])->name('createOrder');
 Route::post('/createOrder',[OrderController::class,'productordercreate'])->name('createOrder');
 Route::get('/editorder/{id}', [OrderController::class, 'orderedit'])->name('orderedit');
 Route::put('/editorder/{id}', [OrderController::class, 'orderupdate'])->name('orderupdate');
@@ -93,17 +94,12 @@ Route::get('/deleteproduct/{id}', [ProductController::class, 'destroyyy'])->name
 
 
 // PDF Generator Controllers 
-Route::get('/dynamic_pdf/pdf',[DynamicPDFController::class,'pdf']);
+Route::get('/order_pdf/pdf',[OrderPDFController::class,'pdf']);
 Route::get('/stock_pdf/pdf',[StockPDFController::class,'pdf']);
 Route::get('/in_stock_pdf/pdf',[InStockPDFController::class,'pdf']);
 Route::get('/product_pdf/pdf',[ProductPDFController::class,'pdf']);
 Route::get('/payment_pdf/pdf',[PaymentPDFController::class,'pdf']);
 Route::get('/user_pdf/pdf',[UserPdfController::class,'pdf']);
-
-
-//QrCode for Products
-// Route::get('/payment_pdf/pdf',[Controller::class,'pdf']);
-
 
 
 //Payment Controllers

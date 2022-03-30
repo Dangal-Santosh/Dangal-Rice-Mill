@@ -52,7 +52,7 @@
             <td class="product_price">${{ $order->product_price }}</td>
             <td class="category_name">{{ $order->category_name }}</td>
             <td class="quantity">{{ $order->quantity }}</td>
-            <td class="total">{{ $order->total }}</td>     
+            <td class="total">${{ $order->total }}</td>     
             <td class="created_at">{{ $order->created_at }}</td>     
         </tr>
         <input type="hidden" name="user_id" value="{{ $order->user_id }}" class="user_id">

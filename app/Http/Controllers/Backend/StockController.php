@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -20,15 +21,15 @@ class StockController extends Controller
     }
     public function Instockcreate(Request $request)
     {
-        Alert::success('Admin Added Stock Successfully !!!', 'InStock');
-
+        
         //Instock Validation
         $this->validate($request, [
-            'product_name' => 'required',
+            'name' => 'required',
             'quantity' => 'required',
             'supplier' => 'required',
         ]);
-
+        
+        Alert::success('Admin Added Stock Successfully !!!', 'InStock');
         $Instock = new InStock;
         $Instock->name = $request->name;
         $Instock->quantity = $request->quantity;
@@ -61,3 +62,4 @@ class StockController extends Controller
         return redirect(route('Instockindex'));
     }
 }
+

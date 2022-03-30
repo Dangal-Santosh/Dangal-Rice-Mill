@@ -11,7 +11,7 @@ Admin DashBoard | Order Details
                 <form action="">
                     <div class="row">
                         <div class="col-md-4 mt-4 ">
-                            <a href="{{ url('dynamic_pdf/pdf') }}" class="btn btn-success"><span
+                            <a href="{{ url('order_pdf/pdf') }}" class="btn btn-success"><span
                                     class="font-weight-bold text-reset">
                                     Order Details</span>
                                 <i class='bx bxs-download'></i>

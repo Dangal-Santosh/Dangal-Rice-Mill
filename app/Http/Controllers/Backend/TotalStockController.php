@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
 use App\Models\TotalStock;
 use RealRashid\SweetAlert\Facades\Alert;
 Use App\Providers\SweetAlertServiceProvider;
@@ -24,6 +24,17 @@ class TotalStockController extends Controller
 
     public function create(Request $request)
     {
+
+         //Instock Validation
+         $this->validate($request, [
+            'name' => 'required',
+            'quantity' => 'required',
+            'category' => 'required',
+            'price' => 'required',
+            'supplier' => 'required',
+            'total' => 'required',
+        ]);
+
         Alert::success('Stock Details Added Successfully !!!', 'Total Stock');
         $stock = new TotalStock;
         $stock->name = $request->name;
@@ -45,6 +56,15 @@ class TotalStockController extends Controller
 
     public function update(Request $request, $id)
     {
+        //Instock Validation
+        $this->validate($request, [
+            'name' => 'required',
+            'quantity' => 'required',
+            'category' => 'required',
+            'price' => 'required',
+            'supplier' => 'required',
+            'total' => 'required',
+        ]);
         Alert::success('Stock Details Updated Successfully !!!','Total Stock');
         $stock = TotalStock::find($id);
         $stock->name = $request->name;
@@ -64,3 +84,4 @@ class TotalStockController extends Controller
         return redirect(route('index'));
     }
 }
+

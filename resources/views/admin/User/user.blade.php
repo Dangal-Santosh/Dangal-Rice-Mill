@@ -75,7 +75,6 @@ Admin Dashboard | User Details
     </div>
     <div class="row">
         <div class="col-sm-12  ml-3">
-            {{-- <div class="add_products"> --}}
                 <h6 class=" text-danger">Total Users</h6>
                 <table class="table table-hover ">
                     <thead>

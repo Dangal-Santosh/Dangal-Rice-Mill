@@ -185,7 +185,7 @@
                                 <img src="{{ asset('uploads/products/'.$order->image) }}" width="90px" height="70px"
                                     alt="Image">
                             </td>
-                            <td>{{$order->total }}</td>
+                            <td>${{$order->total }}</td>
                             <td>{{$order->created_at }}</td>
                             <td>
                                 {{-- <a href="{{ url('/editorder', $order->id) }}" class="btn btn-info btn-sm">Edit</a> --}}

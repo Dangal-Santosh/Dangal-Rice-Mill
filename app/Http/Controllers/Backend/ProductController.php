@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-
-use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\InStock;
 use App\Models\Product;
@@ -53,8 +54,7 @@ class ProductController extends Controller
     public function createee(Request $request)
     {
 
-        Alert::success('Product Added Successfully !!!', 'Products');
-
+        
         //Product Validation
         $this->validate($request, [
             'name' => 'required',
@@ -66,7 +66,8 @@ class ProductController extends Controller
             'total' => 'required',
             'image' => 'image|nullable'
         ]);
-
+        
+        Alert::success('Product Added Successfully !!!', 'Products');
         $product = new Product;
         $product->name = $request->name;
         $product->quantity = $request->quantity;
@@ -179,3 +180,4 @@ class ProductController extends Controller
     }
 
 }
+
