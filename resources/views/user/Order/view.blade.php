@@ -91,6 +91,11 @@
                 var category_name = $('.category_name').text();
                 var quantity = $('.quantity').text();
                 var total = $('.total').text();
+                // $.ajaxSetup({
+                // headers: {
+                //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                // }
+                // });
                 $.ajax({
                     method:"POST",
                     url: "/place-order",

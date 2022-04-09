@@ -71,5 +71,6 @@
         sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
     </script>
+    @include('sweetalert::alert')
 </body>
 </html>

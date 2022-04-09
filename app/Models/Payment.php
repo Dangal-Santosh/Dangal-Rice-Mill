@@ -10,6 +10,7 @@ class Payment extends Model
     use HasFactory;
     protected $table="payments";
     protected $primaryKey = 'id';
+    // protected $fillable = ['task'];
 
     public function users(){
         return $this->belongsTo(User::class,'user_id','id');

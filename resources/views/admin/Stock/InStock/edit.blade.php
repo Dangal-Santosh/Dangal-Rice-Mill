@@ -6,6 +6,7 @@ Admin DashBoard |Instock
 <div class="container mt-5 ml-3">
     <div class="in_stock">
         <div class="row">
+            <h4 class="text-dark">Edit Product In-Stock Details</h4>
             <div class="col-sm-9">
                 <form action="" method="POST">
                     @csrf

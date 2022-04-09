@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Admin Dashboard | User Details
+Admin Dashboard | Customer Details
 @endsection
 @section('sidebar')
 <div class="container mt-3 ml-3 ">
@@ -9,7 +9,7 @@ Admin Dashboard | User Details
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Staffs</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Customers</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -55,12 +55,10 @@ Admin Dashboard | User Details
 <div class="user">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success mb-4 " data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <i class="bx bx-plus-medical"></i>Add User
+        <i class="bx bx-plus-medical"></i>Add Customer
     </button>
     <div>
         <a class="alert-danger">
-            @error('id'){{$message}}
-            @enderror
             @error('name'){{$message}}
             @enderror
             @error('email'){{$message}}
@@ -75,7 +73,7 @@ Admin Dashboard | User Details
     </div>
     <div class="row">
         <div class="col-sm-12  ml-3">
-                <h6 class=" text-danger">Total Users</h6>
+                <h6 class=" text-danger">Total Customers</h6>
                 <table class="table table-hover ">
                     <thead>
                         <tr>

@@ -1,0 +1,42 @@
+Test 1:Testing whether the customer can login into the system with email and password.
+Test 2: Testing whether the customer can add new customer and their details in the application.
+Test 3: Testing whether the system throws error message when customer tries invalid customer email in the application.
+Test 4: Testing whether the customer can edit new customer and their details in the application.
+Test 5: Testing whether the admin can add new customer and their details in the application.
+Test 6: Testing whether the admin can edit customer and their details in the application.
+Test 7: Testing whether the admin can delete customers from the application.
+Test 8: Testing whether the admin can add new product category in the application.
+Test 9: Testing whether the admin can edit product category details in the application.
+Test 10: Testing whether the admin can delete product category details from the application.
+Test 11: Testing whether the admin can add new product in the application.
+Test 12: Testing whether the admin can edit product details in the application.
+Test 13: Testing whether the admin can delete product details from the application.
+Test 14: Testing whether the admin can add new product in-stock in the application.
+Test 15: Testing whether the admin can edit product in-stock details in the application.
+Test 16: Testing whether the admin can delete product in-stock details from the application.
+Test 17: Testing whether the system throws error when customer tries to add stock greater than available stock in the application.
+Test 18: Testing whether the system throws error when admin tries to add product without filling the product details form.
+
+
+ Test 1:Testing whether the user can login into the system with the registered credentials.
+ Test 2:Testing whether the category added by the admin is displayed while adding products in Manage Products Page. 
+ Test 3:Testing whether the product selected by the customer is displayed in form automatically while inserting order of customer in New Order page. 
+ Test 4:Testing whether the customer can print order summary containing order details of customers.
+ Test 5:Testing whether the payment made is stored onto the database or not.
+
+
+
+ SELECT
+    person.name,
+    studentmodule.modulecode,
+    studentmodule.studentid AS studentid1,
+    assignment.assignmentid,
+    assignment.assignmenttype,
+    moduleassignment.grade,
+    moduleassignment.assignmentstatus
+FROM
+         person
+    INNER JOIN studentmodule ON person.personid = studentmodule.studentid
+    INNER JOIN moduleassignment ON studentmodule.studentid = moduleassignment.studentid
+                                     AND studentmodule.modulecode = moduleassignment.modulecode
+    INNER JOIN assignment ON assignment.assignmentid = moduleassignment.assignmentid;

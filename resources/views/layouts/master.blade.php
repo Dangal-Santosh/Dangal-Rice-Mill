@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Dangal Rice Mill</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ url('css/style4.css') }}">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -38,7 +39,7 @@
             <li class="{{ 'user' ==request()->path() ? 'active' : '' }}">
                 <a href="{{ ('/user') }}">
                     <i class='bx bx-user'></i>
-                    <span class="links_name">Users</span></a>
+                    <span class="links_name">Customers</span></a>
             </li>
             <li class="{{ 'categories' ==request()->path() ? 'active' : '' }}">
                 <a href="{{ ('/categories') }}">
@@ -102,6 +103,6 @@
         sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
     </script>
+    @include('sweetalert::alert')
 </body>
-
 </html>

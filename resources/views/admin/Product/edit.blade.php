@@ -13,8 +13,10 @@ Admin DashBoard | Product
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
-                    <label for="category_id" class="form-label">Category</label>
-                    <select class="form-select text-danger  text-weight-bold" name="category_id"
+                    {{-- <label for="category_id" class="form-label">Category</label> --}}
+                    <input type="hidden" class="form-control" id="category_id" name="category_id"  value="{{ ($product->category_id) }}" readonly>
+
+                    {{-- <select class="form-select text-danger  text-weight-bold" name="category_id"
                         aria-label="Default select example" id="category_id">
                         <option selected="selected">---- Select Category ----</option>
                         @foreach ($category as $cat)
@@ -22,15 +24,17 @@ Admin DashBoard | Product
                             {{ ($cat->name) }}
                         </option>
                         @endforeach
-                    </select>
+                    </select> --}}
                 </div>
                 <div class="mb-3 ">
                     <label for="category_name" class="form-label">Category Name</label>
-                    <input type="name" class="form-control" id="category_name" name="category_name" readonly>
+                    <input type="name" class="form-control" id="category_name" name="category_name" value="{{ ($product->category_name) }}" readonly>
                 </div>
                 <div class="mb-3">
-                    <label for="in_stock_id" class="form-label">Products</label>
-                    <select class="form-select text-danger text-weight-bold" name="in_stock_id"
+                    {{-- <label for="in_stock_id" class="form-label">Products</label> --}}
+                    <input type="hidden" class="form-control" id="in_stock_id" name="in_stock_id" value="{{ ($product->in_stock_id) }}" readonly>
+
+                    {{-- <select class="form-select text-danger text-weight-bold" name="in_stock_id"
                         aria-label="Default select example" id="in_stock_id">
                         <option selected="selected">---- Select Product ----</option>
                         @foreach ($Instock as $in)
@@ -38,27 +42,27 @@ Admin DashBoard | Product
                             {{ ($in->name) }}
                         </option>
                         @endforeach
-                    </select>
+                    </select> --}}
                 </div>
                 <div class="mb-3 ">
                     <label for="name" class="form-label">Product Name</label>
-                    <input type="name" class="form-control" id="name" name="name" readonly>
+                    <input type="name" class="form-control" id="name" name="name" value="{{ ($product->name) }}"readonly>
                 </div>
                 <div class="mb-3">
                     <label for="stock_quantity" class="text-danger"> Available Stock</label><br>
-                    <input type="biginteger" class="form-control" id="stock_quantity" name="stock_quantity" readonly>
+                    <input type="biginteger" class="form-control" id="stock_quantity" name="stock_quantity" value="{{ ($product->in_stocks->quantity) }}"readonly>
                     <label for="quantity" class="form-label"> Quantity </label>&nbsp; &nbsp;&nbsp;
                     <label for="error" id="error" style="color: red"></label>
                     <input type="quantity" class="form-control changevalue" id="quantity" name="quantity"
-                        onkeyup="categoryValidation()">
+                    value="{{ ($product->quantity) }}" onkeyup="categoryValidation()">
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
-                    <input type="biginteger" class="form-control changeQuantity" id="price" name="price">
+                    <input type="biginteger" class="form-control changeQuantity" id="price" name="price" value="{{ ($product->price) }}">
                 </div>
                 <div class="mb-3">
                     <label for="total" class="form-label">Total</label>
-                    <input type="biginteger" class="form-control " id="total" name="total">
+                    <input type="biginteger" class="form-control " id="total" name="total"  value="{{ ($product->total) }}"readonly>
                 </div>
                 <div class="mb-3">
                     <label for="">Product Image</label>
@@ -66,11 +70,12 @@ Admin DashBoard | Product
                     <img src="{{ asset('uploads/products/'.$product->image) }}" width="90px" height="70px" alt="Image">
 
                 </div>
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success" id="button">Update</button>
             </form>
         </div>
     </div>
 </div>
+<script src="{{ url('js/script.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(".changeQuantity").change(function(e){
@@ -81,7 +86,7 @@ Admin DashBoard | Product
     })
     
 </script>
-<script>
+{{-- <script>
     $( "#in_stock_id" ).change(function () {  
     var id = $(this).val();
 
@@ -97,8 +102,8 @@ Admin DashBoard | Product
         }
     })
     });
-</script>
-<script>
+</script> --}}
+{{-- <script>
     $( "#category_id" ).change(function () {
     var id = $(this).val();
 
@@ -112,5 +117,5 @@ Admin DashBoard | Product
         }
     })
     });
-</script>
+</script> --}}
 @endsection

@@ -67,7 +67,7 @@ Admin DashBoard | Product
                             <label for="image">Product Image</label>
                             <input type="file" name="image" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-danger">Add Product</button>
+                        <button type="submit" class="btn btn-success" id="button">Add Product</button>
                     </form>
                     @if (session()->has('status'))
                     <div class="alert alert-success">
@@ -113,7 +113,7 @@ Admin DashBoard | Product
                 @error('total'){{$message}}
     
                 @enderror
-    
+                
             </a>
         </div>
         <h6 class=" text-danger">Total Products</h6>
@@ -122,7 +122,8 @@ Admin DashBoard | Product
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Product Stock ID</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Name
+                    </th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>
                     <th scope="col">Total</th>
@@ -138,8 +139,8 @@ Admin DashBoard | Product
                     <th>{{$pro->in_stock_id}}</th>
                     <td>{{$pro->name}}</td>
                     <td>{{$pro->quantity}}</td>
-                    <td>{{$pro->price}}</td>
-                    <td>{{$pro->total}}</td>
+                    <td>${{$pro->price}}</td>
+                    <td>${{$pro->total}}</td>
                     <td>{{$pro->category_name}}</td>
                     <td>
                         <img src="{{ asset('uploads/products/'.$pro->image) }}" width="90px" height="70px" alt="Image">
@@ -158,6 +159,8 @@ Admin DashBoard | Product
 </div>
 </div>
 </div>
+</div>
+<script src="{{ url('js/script.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(".changeQuantity").change(function(e){

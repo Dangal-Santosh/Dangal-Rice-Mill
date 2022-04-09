@@ -47,10 +47,10 @@
                     <div class="product">
                         <div class="image">
                             <img src="{{url("uploads/products")}}/{{ $pro->image}}" alt="p-1" />
-                        </div>
+                        </div><br>
+                        <h4>{{ $pro->name }}</h4>
                         <div class="product_details">
 
-                            <h4>{{ $pro->name }}</h4>
                             <h6>${{ $pro->price }}</h6>
                             <a href="{{ route('productOrder',['id' => $pro->id]) }}" class="btn btn-danger mb-2">Buy Products</a>
                         </div>

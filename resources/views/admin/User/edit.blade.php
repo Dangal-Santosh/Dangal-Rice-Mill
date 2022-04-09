@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('title')
-Admin Dashboard | User Details
+Admin Dashboard | Customer Details
 @endsection
 @section('sidebar')
 <div class="container mt-1 ml-3">
     <div class="row">
-        <h4 class="text-dark" style="margin-left: 60px;">Edit User Details</h4>
+        <h4 class="text-dark" style="margin-left: 60px;">Edit Customer Details</h4>
         <div>
             <a class="alert-danger">
                 @error('name'){{$message}}

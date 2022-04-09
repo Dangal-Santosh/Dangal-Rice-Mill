@@ -42,9 +42,9 @@ class PaymentController extends Controller
 
         if($request->payment_mode == "Paid With Paypal")
         {
+            
+            return response()->json(['status'=>"Order Placed Successfully"]);
         }
-
-        return response()->json(['status'=>"Order Placed Successfully"]);
     }
 
     public function cashondelivery(Order $order){

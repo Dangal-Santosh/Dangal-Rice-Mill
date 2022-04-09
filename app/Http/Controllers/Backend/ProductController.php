@@ -23,21 +23,38 @@ class ProductController extends Controller
     }
 
     // Product CRUD Operation
-    public function indexxx()
+    public function indexxx( Request $request)
     {
         $products = Product::all();
         $in_stocks = InStock::all();
         $categories = Category::all();
         $roles=Auth::User()->roles;
-        if($roles=='Admin'){
-            return view('admin.Product.product',compact('products','categories','in_stocks'));
-        }
-        else if($roles=='Staff'){
-        
-            return view('staff.Product.product',compact('products','categories','in_stocks'));
-        }
+        // if ($request->sort_by) {
+        // $order=($request->sort_by=='oldest')?'ASC':'DESC';
+        // $product->sortByDesc()('created_at','order');
+            
+        // }else{
+        //     $product->products('created_at','DESC');
+        // }
+
+        return view('admin.Product.product',compact('products','categories','in_stocks'));
     }
 
+
+    // <form action="" class="form-inline">
+    //     <select name="" id="" class="form-control" onchange="sort_by(this.value)">
+    //         <option value="latest" {{ (Request::query('sort_by') && Request::query('sort_by')=='latest' || Request::query('sort_by') )?'selected':''}}>Latest</option>
+    //         <option value="oldest" {{ (Request::query('sort_by') && Request::query('sort_by')=='oldest')?'selected':''}}>Oldest</option>
+    //     </select>
+    // </form>
+
+
+//     <script type="text/javascript">
+//     function sort_by (value){
+//         object.assign(query,{'sort_by':value});
+//         window.location.href="{{ route('orderProduct') }}"*'?'+$.param(query);
+//     }
+// </script>
 
     
 
@@ -102,13 +119,7 @@ class ProductController extends Controller
         $Instock = InStock::all();
         $category = Category::all();
         $roles=Auth::User()->roles;
-        if($roles=='Admin'){
-            return view('admin.Product.edit',compact('product','category','Instock'));
-        }
-        else if($roles=='Staff'){
-        
-            return view('staff.Product.edit',compact('product','category','Instock'));
-        }
+        return view('admin.Product.edit',compact('product','category','Instock'));
     }
 
     public function updateee(Request $request, $id)

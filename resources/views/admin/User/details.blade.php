@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Admin DashBoard | User Details
+Admin DashBoard | Customer Details
 @endsection
 
 @section('sidebar')
@@ -12,7 +12,7 @@ Admin DashBoard | User Details
                     <div class="col-md-4 ml-5 mt-4 ">
                         <a href="{{ url('/user_pdf/pdf') }}" class="btn btn-success text-center">
                             <span class="font-weight-bold text-reset">
-                                User Details</span>
+                                Customer Details</span>
                             <i class='bx bxs-download'></i>
                         </a>
                     </div>
@@ -26,7 +26,7 @@ Admin DashBoard | User Details
                     </div> --}}
                 </div><br><br>
             </form>
-            <h6 class="text-danger">User Details</h6><br>
+            <h6 class="text-danger">Customer Details</h6><br>
             <div class="card" >
                 <div class="card-content table-responsive">
                     <table class="table table-hover">
@@ -56,7 +56,7 @@ Admin DashBoard | User Details
                             @endforeach
                             @else
                             <div class="text-danger h1">
-                                <span class="">No User Details Found!!</span>
+                                <span class="">No Customer Details Found!!</span>
                             </div>
                             @endif
                         </tbody>
