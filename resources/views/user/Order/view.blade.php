@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.0/sweetalert2.min.js">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -49,13 +50,14 @@
             <td class="address">{{ $order->address }}</td>
             <td class="product_id">{{ $order->product_id }}</td>
             <td class="product_name">{{ $order->product_name }}</td>
-            <td class="product_price">${{ $order->product_price }}</td>
+            <td class="product_price">{{ $order->product_price }}</td>
             <td class="category_name">{{ $order->category_name }}</td>
             <td class="quantity">{{ $order->quantity }}</td>
-            <td class="total">${{ $order->total }}</td>     
+            <td class="total">{{ $order->total }}</td>     
             <td class="created_at">{{ $order->created_at }}</td>     
         </tr>
         <input type="hidden" name="user_id" value="{{ $order->user_id }}" class="user_id">
+        {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
         @endforeach
         </tbody>
         </table>
@@ -91,16 +93,19 @@
                 var category_name = $('.category_name').text();
                 var quantity = $('.quantity').text();
                 var total = $('.total').text();
-                // $.ajaxSetup({
-                // headers: {
-                //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                // }
-                // });
+
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+                });
+                // debugger
+                
                 $.ajax({
                     method:"POST",
                     url: "/place-order",
                     data:{
-                        '_token': "{{ csrf_token() }}",
+                        // '_token': "{{ csrf_token() }}",
                         'user_id': user_id,
                         'name': name,
                         'email': email,
@@ -111,12 +116,16 @@
                         'category_name' :category_name,
                         'quantity':quantity,
                         'total': total,
-                        'payment_mode':"Paid with Paypal",
+                        'payment_mode':"Paid with PayPal",
                         'payment_id':orderData.id,
                     },
                     success:function(response){
                         swal(response.status);
                         window.location.href ="/homepage";
+                    }
+                    error:function(xhr){
+
+                        console.log(xhr.responseText);
                     }
                 });
         });

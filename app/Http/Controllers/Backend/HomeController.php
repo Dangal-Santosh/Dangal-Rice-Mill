@@ -37,11 +37,12 @@ class HomeController extends Controller
         
         //User Validation
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
+            'name' => 'required|max:255',
+            'email' => 'required|string|email|unique:users',
             'address' => 'required',
-            'age' => 'required',
+            'age' => 'required|numeric|min:20',
             'phone' => 'required',
+            'password' => 'required|string|min:8',
         ]);
 
         Alert::success('Customer Added Successfully !!!', 'Customers');

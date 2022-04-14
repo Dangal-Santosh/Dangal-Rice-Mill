@@ -35,7 +35,29 @@ class IndexController extends Controller
 
     public function Adashboard()
     {
-        $sum = Order::sum('total');
+        $payments = Payment::all();
+        $payments = DB::select(
+            DB::raw(
+                // 'SELECT category_name, quantity,product_price, total from payments group by category_name, quantity,product_price, total;'
+                'SELECT category_name, sum(quantity) as Quantity ,product_price, sum(total) as Total from payments group by category_name, quantity,product_price, total;'
+            )
+        );
+        $barData = '';
+        foreach ($payments as $payment) {
+            $barData .=
+                "['" .
+                $payment->category_name .
+                "',  " .
+                $payment->product_price .
+                ',' .
+                $payment->Quantity .
+                ', ' .
+                $payment->Total .
+                '],';
+        }
+        $arr['barData'] = rtrim($barData, ',');
+
+        $sum = Payment::sum('total');
         $total_orders = DB::table('orders')->count();
         $total_products = DB::table('products')->count();
         $total_payments = DB::table('payments')->count();
@@ -45,7 +67,7 @@ class IndexController extends Controller
         $orders = Order::all();
         $stocks = TotalStock::all();
         return view(
-            'admin.Dashboard.dashboard',
+            'admin.Dashboard.dashboard', $arr,
             compact(
                 'orders',
                 'users',
@@ -54,27 +76,28 @@ class IndexController extends Controller
                 'sum',
                 'total_orders',
                 'total_products',
-                'stocks'
+                'stocks',
+                'payments'
             )
         );
     }
 
-    public function sdashboard(Request $request)
-    {
-        $product_worth = Product::sum('total');
-        $search = $request['search'] ?? '';
-        if ($search != '') {
-            $products = Product::where('name', 'LIKE', "%$search%")->paginate(
-                1
-            );
-        } else {
-            $products = Product::orderBy('id', 'Asc')->paginate(1);
-        }
-        return view(
-            'staff.Dashboard.dashboard',
-            compact('products', 'product_worth')
-        );
-    }
+    // public function sdashboard(Request $request)
+    // {
+    //     $product_worth = Product::sum('total');
+    //     $search = $request['search'] ?? '';
+    //     if ($search != '') {
+    //         $products = Product::where('name', 'LIKE', "%$search%")->paginate(
+    //             1
+    //         );
+    //     } else {
+    //         $products = Product::orderBy('id', 'Asc')->paginate(1);
+    //     }
+    //     return view(
+    //         'staff.Dashboard.dashboard',
+    //         compact('products', 'product_worth')
+    //     );
+    // }
 
     // public function searchProducts(Request $request) {
     //     $search = $request['search'] ?? "";
@@ -119,25 +142,26 @@ class IndexController extends Controller
         return view('admin.Stock.Instock.chart', $arr, compact('Instocks'));
     }
 
-    public function bargraph()
+    public function bargraph( Request $request)
     {
         $payments = Payment::all();
         $payments = DB::select(
             DB::raw(
-                'SELECT product_name, quantity,product_price, total from payments group by product_name, quantity,product_price, total;'
+                // 'SELECT category_name, quantity,product_price, total from payments group by category_name, quantity,product_price, total;'
+                'SELECT category_name, sum(quantity) as Quantity ,product_price, sum(total) as Total from payments group by category_name, quantity,product_price, total;'
             )
         );
         $barData = '';
         foreach ($payments as $payment) {
             $barData .=
                 "['" .
-                $payment->product_name .
+                $payment->category_name .
                 "',  " .
                 $payment->product_price .
                 ',' .
-                $payment->quantity .
+                $payment->Quantity .
                 ', ' .
-                $payment->total .
+                $payment->Total .
                 '],';
         }
         $arr['barData'] = rtrim($barData, ',');

@@ -4,6 +4,24 @@ Admin DashBoard | Sales Details
 @endsection
 
 @section('sidebar')
+
+<div class="row ">
+    <div class="col-sm-12 ">
+        <div class="sales_details">
+
+            <table class="table table-striped table-borderless" cellspacing="0">
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th class="text-right"><u>  Total Products Sold:</u><span class="text-danger px-2">{{ $payment->sum('quantity') }}</span> products </th>
+                        <th class="text-right"><u>Total Income:</u><span class="text-danger px-2"> ${{ $payment->sum('total') }}</span></th>
+                        <th class="text-right"><u>Total Customer Involved: </u><span class="text-danger px-2">{{ $payment->count('user_id') }} </span>customers </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 <div class="row ">
     <div class="col-sm-12 ">
         <div class="payment_details">
@@ -28,7 +46,7 @@ Admin DashBoard | Sales Details
                 </div><br><br>
             </form>
             <h6 class="text-danger">Sales Details</h6><br>
-            <div class="card" >
+            <div class="card">
                 <div class="card-content table-responsive">
                     <table class="table table-hover">
                         <thead class="text-dark">
@@ -63,7 +81,10 @@ Admin DashBoard | Sales Details
                                 {{-- <td>
                                     <div class="qrcode">
                                         {!! QrCode::size(80)->generate(
-                                        " Order ID:$payment->id, Customer Name:$payment->name, Email:$payment->email, Address:$payment->address, Product Name:$payment->product_name, Product Price:$payment->product_price, Quantity:$payment->quantity, Total Price:$payment->total, Total Price:$payment->payment_mode"
+                                        " Order ID:$payment->id, Customer Name:$payment->name, Email:$payment->email,
+                                        Address:$payment->address, Product Name:$payment->product_name, Product
+                                        Price:$payment->product_price, Quantity:$payment->quantity, Total
+                                        Price:$payment->total, Total Price:$payment->payment_mode"
                                         ); !!}
                                     </div>
                                 </td> --}}

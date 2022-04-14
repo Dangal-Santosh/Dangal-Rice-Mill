@@ -58,52 +58,79 @@ Admin DashBoard | Dashboard
         <i class="material-icons">account_balance_wallet</i>
     </div>
 </div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
-<div class="container">
-    <div class="add_products">
-    <div class="row">
-        <div class="col-sm-12 dashboard">
-            <div class="card-header card-header-text">
-                <a href="{{ url('stock_pdf/pdf') }}" class="btn btn-success">
-                    {{-- <button class="btn btn-primary printstock" onclick="window.print();" >Print</button> --}}
-                    <span class="font-weight-bold text-reset">Stock Details</span>
-                    <i class=" bx bxs-download"></i>
-                </a>
-            </div>
-            <div class="sales-details">
-                <table class="table table-hover">
-                    <thead>
-                        <tr class="text-dark">
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Supplier</th>
-                            <th scope="col">Total Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($stocks as $stock)
-                        <tr>
-                            <th>{{$stock->id}}</th>
-                            <td>{{$stock->name}}</td>
-                            <td>{{$stock->quantity}}</td>
-                            <td>{{$stock->price}}</td>
-                            <td>{{$stock->category}}</td>
-                            <td>{{$stock->supplier}}</td>
-                            <td>{{$stock->total}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Sales', 'Price', 'Quantity','Total Income'],
+          <?php echo $barData?>     
+        ]);
 
+        var options = {
+          chart: {
+            title: 'Sales Details',
+            subtitle: 'Daily Sales Chart',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+</script>
+</head>
+
+<body>
+    <div id="columnchart_material" style="width: 1140px; height: 500px; margin-left: 6%; margin-top: 2%"></div>
+
+    {{-- <div class="container">
+        <div class="add_products">
+            <div class="row">
+                <div class="col-sm-12 dashboard">
+                    <div class="card-header card-header-text">
+                        <a href="{{ url('stock_pdf/pdf') }}" class="btn btn-success">
+                            <button class="btn btn-primary printstock" onclick="window.print();">Print</button>
+                            <span class="font-weight-bold text-reset">Stock Details</span>
+                            <i class=" bx bxs-download"></i>
+                        </a>
+                    </div>
+                    <div class="sales-details">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($stocks as $stock)
+                                <tr>
+                                    <th>{{$stock->id}}</th>
+                                    <td>{{$stock->name}}</td>
+                                    <td>{{$stock->quantity}}</td>
+                                    <td>{{$stock->price}}</td>
+                                    <td>{{$stock->category}}</td>
+                                    <td>{{$stock->supplier}}</td>
+                                    <td>{{$stock->total}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
         </div>
+    </div> --}}
     </div>
-</div>
-</div>
-</div>
-</div>
+    </div>
 
-@endsection
+    @endsection

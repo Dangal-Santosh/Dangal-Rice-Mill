@@ -67,7 +67,7 @@ Admin DashBoard | Product
                             <label for="image">Product Image</label>
                             <input type="file" name="image" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-success" id="button">Add Product</button>
+                        <button type="submit" class="btn btn-success" id="button">Add</button>
                     </form>
                     @if (session()->has('status'))
                     <div class="alert alert-success">

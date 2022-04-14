@@ -39,6 +39,8 @@ class PaymentController extends Controller
         $payment->payment_mode = $request->payment_mode;
         $payment->payment_id = $request->payment_id;
         $payment->save();
+        return redirect('homepage');
+
 
         if($request->payment_mode == "Paid With Paypal")
         {
