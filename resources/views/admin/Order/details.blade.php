@@ -78,10 +78,10 @@ Admin DashBoard | Order Details
                         </tbody>
                         
                     </table>
-                    <div class="pageNum">
+                    {{-- <div class="pageNum">
                       
                         {{ $orders->links() }}
-                    </div>
+                    </div> --}}
                    
                 </div>
             </div>

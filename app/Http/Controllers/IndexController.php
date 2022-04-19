@@ -82,49 +82,6 @@ class IndexController extends Controller
         );
     }
 
-    // public function sdashboard(Request $request)
-    // {
-    //     $product_worth = Product::sum('total');
-    //     $search = $request['search'] ?? '';
-    //     if ($search != '') {
-    //         $products = Product::where('name', 'LIKE', "%$search%")->paginate(
-    //             1
-    //         );
-    //     } else {
-    //         $products = Product::orderBy('id', 'Asc')->paginate(1);
-    //     }
-    //     return view(
-    //         'staff.Dashboard.dashboard',
-    //         compact('products', 'product_worth')
-    //     );
-    // }
-
-    // public function searchProducts(Request $request) {
-    //     $search = $request['search'] ?? "";
-    //     if($search != "") {
-    //         $products = Product::where('name', 'LIKE', "%$search%")->get();
-    //     }else {
-    //         $products = Bus::orderBy('id', 'Asc')->get();
-    //     }
-    //     return view('staff.dashboard', compact('products'));
-    // }
-
-    // $search1 = $request['search1'] ?? "";
-    //         $search2 = $request['search2'] ?? "";
-    //         $search3 = $request['search3'] ?? "";
-    //         if($search != "") {
-    //             $buses = Bus::where('bus_name', 'LIKE', "%$search%")->paginate(3);
-    //         }elseif ($search1 != "") {
-    //             $buses = Bus::where('time', 'LIKE', "%$search1")->paginate(3);
-    //         }elseif ($search2 != "") {
-    //             $buses = Bus::where('price', 'LIKE', "%$search2")->paginate(3);
-    //         }elseif ($search3 != "") {
-    //             $buses = Bus::where('date', 'LIKE', "%$search3")->paginate(3);
-    //         }else {
-    //             $buses = Bus::orderBy('bus_id', 'Asc')->paginate(3);
-    //         }
-    //         return view('user.searchBus', compact('buses'));
-
     public function piechart()
     {
         $Instocks = InStock::all();
@@ -178,10 +135,13 @@ class IndexController extends Controller
             $orders = Order::where(
                 'created_at',
                 'LIKE',
-                "%$search2%"
-            )->paginate(2);
+                "%$search2%",
+       
+            // )->paginate(2);
+            )->get();
         } else {
-            $orders = Order::orderBy('id', 'Asc')->paginate(5);
+            // $orders = Order::orderBy('id', 'Asc')->paginate(5);
+            $orders = Order::orderBy('id', 'Asc')->get();
         }
         return view(
             'admin.Order.details',
@@ -237,6 +197,53 @@ class IndexController extends Controller
         } else {
             $users = User::orderBy('id', 'Asc')->get();
         }
-        return view('admin.User.details', compact('users', 'user'));
+        return view('admin.Customer.details', compact('users', 'user'));
     }
 }
+
+
+
+
+
+    // public function sdashboard(Request $request)
+    // {
+    //     $product_worth = Product::sum('total');
+    //     $search = $request['search'] ?? '';
+    //     if ($search != '') {
+    //         $products = Product::where('name', 'LIKE', "%$search%")->paginate(
+    //             1
+    //         );
+    //     } else {
+    //         $products = Product::orderBy('id', 'Asc')->paginate(1);
+    //     }
+    //     return view(
+    //         'staff.Dashboard.dashboard',
+    //         compact('products', 'product_worth')
+    //     );
+    // }
+
+    // public function searchProducts(Request $request) {
+    //     $search = $request['search'] ?? "";
+    //     if($search != "") {
+    //         $products = Product::where('name', 'LIKE', "%$search%")->get();
+    //     }else {
+    //         $products = Bus::orderBy('id', 'Asc')->get();
+    //     }
+    //     return view('staff.dashboard', compact('products'));
+    // }
+
+    // $search1 = $request['search1'] ?? "";
+    //         $search2 = $request['search2'] ?? "";
+    //         $search3 = $request['search3'] ?? "";
+    //         if($search != "") {
+    //             $buses = Bus::where('bus_name', 'LIKE', "%$search%")->paginate(3);
+    //         }elseif ($search1 != "") {
+    //             $buses = Bus::where('time', 'LIKE', "%$search1")->paginate(3);
+    //         }elseif ($search2 != "") {
+    //             $buses = Bus::where('price', 'LIKE', "%$search2")->paginate(3);
+    //         }elseif ($search3 != "") {
+    //             $buses = Bus::where('date', 'LIKE', "%$search3")->paginate(3);
+    //         }else {
+    //             $buses = Bus::orderBy('bus_id', 'Asc')->paginate(3);
+    //         }
+    //         return view('user.searchBus', compact('buses'));

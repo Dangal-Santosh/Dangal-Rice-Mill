@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Admin DashBoard
+Admin DashBoard |Category Details
 @endsection
 @section('sidebar')
 <div class="container ml-5">

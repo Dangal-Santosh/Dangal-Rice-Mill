@@ -3,10 +3,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
-
 use Illuminate\Http\Request;
 use App\Models\Category;
-
 
 class CategoryController extends Controller
 {
@@ -27,9 +25,6 @@ class CategoryController extends Controller
         //Categories Validation
         $this->validate($request, [
             'name' => 'required',
-            // 'client' => 'required',
-            // 'description' => 'required',
-            // 'image' => 'image|nullable'
         ]);
 
         Alert::success('Admin Added Category Successfully !!!', 'CategoryPage');

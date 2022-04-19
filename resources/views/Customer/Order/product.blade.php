@@ -10,7 +10,7 @@
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ ('css/style2.css') }}">
     <link rel="stylesheet" href="{{ ('css/style.css') }}">
-    <title>User | Products</title>
+    <title>Customer | Products</title>
     
 </head>
 
@@ -49,10 +49,10 @@
                             <img src="{{url("uploads/products")}}/{{ $pro->image}}" alt="p-1" />
                         </div><br>
                         <h4>{{ $pro->name }}</h4>
+                        <h6>${{ $pro->price }}</h6>
+                        <a href="{{ route('productOrder',['id' => $pro->id]) }}" class="btn btn-danger mb-2">Buy Products</a>
                         <div class="product_details">
 
-                            <h6>${{ $pro->price }}</h6>
-                            <a href="{{ route('productOrder',['id' => $pro->id]) }}" class="btn btn-danger mb-2">Buy Products</a>
                         </div>
                     </div> 
                 </div>
@@ -62,6 +62,9 @@
                 <span class="">No Products found!!</span>
             </div>
             @endif
+        </div>
+        <div class="pageNum"> 
+            {{ $products->links() }}
         </div>
     </div>
     </div>

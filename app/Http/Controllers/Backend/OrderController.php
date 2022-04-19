@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
@@ -22,16 +21,6 @@ class OrderController extends Controller
         $this->middleware(['auth:sanctum', 'verified']);
     }
 
-    // public function orderindex()
-    // {   
-    //     $users =User::all();
-    //     $orders = Order::all();
-    //     $user_order = Order::orderBy('created_at','DESC')->where('user_id',Auth::user()->id)->get();
-    //     $products = Product::all();
-    //     return view('user.Order.order', ['orders'=>$orders,'products'=>$products,'users'=>$users,'user_order'=>$user_order]);
-
-
-    // }
     public function productOrder($id) {
         $this->id = $id;
         $pro = Product::where('id',$this->id)->first();
@@ -39,7 +28,7 @@ class OrderController extends Controller
             ->where('user_id', Auth::user()->id)
             ->whereDate('created_at', date('Y-m-d'))
             ->get();
-        return view('user.Order.productorder', compact('pro', 'orders'));
+        return view('Customer.Order.productorder', compact('pro', 'orders'));
     }
 
    public function productordercreate(Request $request)
@@ -79,57 +68,13 @@ class OrderController extends Controller
         $product->save();
         return back();
     }
-    // public function ordercreate(Request $request)
-    // {
-        
-    //     $this->validate($request, [
-    //         'user_id' => 'required',
-    //         'name' => 'required',
-    //         'email' => 'required',
-    //         'address' => 'required',
-    //         'product_id' => 'required',
-    //         'category_name' => 'required',
-    //         'quantity' => 'required',
-    //         'total' => 'required',
-    //         'product_price' => 'required',
-    //         'quantity' => 'required',
-    //         'image' => 'image|nullable'
-    //     ]);
 
-    //     Alert::success('Order Placed Successfully !!!', 'Orders');
-
-    //     $order = new Order;
-    //     $order->user_id =$request->user_id;
-    //     $order->name =$request->name;
-    //     $order->email =$request->email;
-    //     $order->address=$request->address;
-    //     $order->product_id =$request->product_id;
-    //     $order->product_name =$request->product_name;
-    //     $order->product_price =$request->product_price;
-    //     $order->quantity =$request->quantity;
-    //     $order->category_name =$request->category_name;
-    //     $order->image =$request->image;
-    //     // if($request->hasfile('image'))
-    //     // {
-    //     //     $file = $request->file('image');
-    //     //     $extention = $file->getClientOriginalExtension();
-    //     //     $filename = time().'.'.$extention;
-    //     //     $file->move('uploads/products/', $filename);
-    //     //     $order->image = $filename;
-    //     // }
-    //     $order->total =$request->total;
-    //     $order->save();
-    //     $product = Product::where('id',$order->product_id)->first();
-    //     $product->quantity = $product->quantity - $request->quantity;
-    //     $product->save();
-    //     return back();
-    // }
     public function orderedit($id)
     {
         $users = User::all();
         $order = Order::find($id);
         $products = Product::all();
-        return view('user.Order.edit', ['order'=>$order],['products'=>$products],['users'=>$users]);
+        return view('Customer.Order.edit', ['order'=>$order],['products'=>$products],['users'=>$users]);
     }
     public function orderview($id)
     {      
@@ -137,26 +82,11 @@ class OrderController extends Controller
         $products = Product::all();
         $categories = Category::all();
         $orders = Order::where('id',$id)->get();
-        return view('user.Order.view',['orders'=>$orders],['products'=>$products],['users'=>$users],['categories'=>$categories]);
+        return view('Customer.Order.view',['orders'=>$orders],['products'=>$products],['users'=>$users],['categories'=>$categories]);
     }
     public function orderupdate(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'user_id' => 'required',
-        //     'name' => 'required',
-        //     'email' => 'required',
-        //     'address' => 'required',
-        //     'product_id' => 'required',
-        //     'category_name' => 'required',
-        //     'quantity' => 'required',
-        //     'total' => 'required',
-        //     'product_price' => 'required',
-        //     'quantity' => 'required',
-        //     'image' => 'image|nullable'
-        // ]);
 
-        // Alert::success('Order Updated Successfully !!!', 'Orders');
-        
         $order = Order::find($id);
         $order->user_id =$request->user_id;
         $order->name =$request->name;
@@ -177,6 +107,7 @@ class OrderController extends Controller
         $product->save();
         return redirect(route('productOrder'));
     }
+
     public function orderdestroy($id)
     {
         Alert::warning('Order Cancelled Successfully !!!', 'Orders');
@@ -211,11 +142,6 @@ class OrderController extends Controller
         echo (json_encode($show));
     }
 
-    // public function product(){
-    //     $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
-    //     return view ('user.Order.product',compact('product'));
-    // }
-
     public function product(Request $request){
         $product = DB::table('products')->select('image','name','price')->orderBy('image','desc')->limit(5)->get();
         $product = Product::all();
@@ -223,11 +149,13 @@ class OrderController extends Controller
         $categories = Category::all();
         $see_product = $request['see_product'] ?? "";
         if($see_product != "") {
-            $products = Product::where('name', 'LIKE', "%$see_product%")->get();
+            $products = Product::where('name', 'LIKE', "%$see_product%")->paginate(8);
+            // ->get();
         }else {
-            $products = Product::orderBy('id', 'Asc')->get();
+            $products = Product::orderBy('id', 'Asc')->paginate(8);
+            // ->get();
         }
-        return view ('user.Order.Product',compact('in_stocks','categories','products','product'));
+        return view ('Customer.Order.Product',compact('in_stocks','categories','products','product'));
     }
 
 }

@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,7 +6,6 @@ Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
 
 class HomeController extends Controller
 {
@@ -29,7 +26,7 @@ class HomeController extends Controller
     public function indexx()
     {
         $users = User::where ('roles', 'user')->get();
-        return view('admin.User.user', ['users'=>$users]);
+        return view('admin.Customer.user', ['users'=>$users]);
     }
 
     public function createe(Request $request)
@@ -63,7 +60,7 @@ class HomeController extends Controller
     public function editt($id)
     {
         $user = User::find($id);
-        return view('admin.User.edit', ['user'=>$user]);
+        return view('admin.Customer.edit', ['user'=>$user]);
     }
 
     public function updatee(Request $request, $id)

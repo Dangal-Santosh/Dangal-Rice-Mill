@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 Use App\Providers\SweetAlertServiceProvider;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -29,49 +28,11 @@ class ProductController extends Controller
         $in_stocks = InStock::all();
         $categories = Category::all();
         $roles=Auth::User()->roles;
-        // if ($request->sort_by) {
-        // $order=($request->sort_by=='oldest')?'ASC':'DESC';
-        // $product->sortByDesc()('created_at','order');
-            
-        // }else{
-        //     $product->products('created_at','DESC');
-        // }
-
         return view('admin.Product.product',compact('products','categories','in_stocks'));
     }
 
-
-    // <form action="" class="form-inline">
-    //     <select name="" id="" class="form-control" onchange="sort_by(this.value)">
-    //         <option value="latest" {{ (Request::query('sort_by') && Request::query('sort_by')=='latest' || Request::query('sort_by') )?'selected':''}}>Latest</option>
-    //         <option value="oldest" {{ (Request::query('sort_by') && Request::query('sort_by')=='oldest')?'selected':''}}>Oldest</option>
-    //     </select>
-    // </form>
-
-
-//     <script type="text/javascript">
-//     function sort_by (value){
-//         object.assign(query,{'sort_by':value});
-//         window.location.href="{{ route('orderProduct') }}"*'?'+$.param(query);
-//     }
-// </script>
-
-    
-
-    // public function search1(){
-
-    //     $search =$_GET['product_item'];
-    //     $products = Product::where('name', 'LIKE', '%' .$search. '%')->get();
-    //     return view('admin.Product.details', compact('products'));
-
-
-    // }
-
-
     public function createee(Request $request)
     {
-
-        
         //Product Validation
         $this->validate($request, [
             'name' => 'required',
@@ -191,4 +152,37 @@ class ProductController extends Controller
     }
 
 }
+
+
+
+
+
+
+
+
+    // <form action="" class="form-inline">
+    //     <select name="" id="" class="form-control" onchange="sort_by(this.value)">
+    //         <option value="latest" {{ (Request::query('sort_by') && Request::query('sort_by')=='latest' || Request::query('sort_by') )?'selected':''}}>Latest</option>
+    //         <option value="oldest" {{ (Request::query('sort_by') && Request::query('sort_by')=='oldest')?'selected':''}}>Oldest</option>
+    //     </select>
+    // </form>
+
+
+//     <script type="text/javascript">
+//     function sort_by (value){
+//         object.assign(query,{'sort_by':value});
+//         window.location.href="{{ route('orderProduct') }}"*'?'+$.param(query);
+//     }
+// </script>
+
+    
+
+    // public function search1(){
+
+    //     $search =$_GET['product_item'];
+    //     $products = Product::where('name', 'LIKE', '%' .$search. '%')->get();
+    //     return view('admin.Product.details', compact('products'));
+
+
+    // }
 
