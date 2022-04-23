@@ -30,9 +30,11 @@ Admin DashBoard | Product
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Product</th>
-                <th scope="col">Name</th>
+                <th scope="col"> Name</th>
+                {{-- <th scope="col"> @sortablelink('Name')</th> --}}
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
+                {{-- <th scope="col">@sortablelink('Price')</th> --}}
                 <th scope="col">Total</th>
                 <th scope="col">Category</th>
                 <th scope="col">Image</th>
@@ -40,6 +42,7 @@ Admin DashBoard | Product
             </tr>
         </thead>
         <tbody>
+            {{-- @if ($products->count() > 0) --}}
             @if ($products->count() > 0)
             @foreach ($products as $pro)
             <tr>
@@ -62,7 +65,9 @@ Admin DashBoard | Product
                 </td> --}}
             </tr>
             @endforeach
+
             {{-- <h4><span class="text-success">Products Worth: </span>{{ $product_worth }}</h4> --}}
+            {{-- @endif --}}
             @else
             <div class="text-danger h1">
                 <span class="">No Products found!!</span>
@@ -70,6 +75,7 @@ Admin DashBoard | Product
             @endif
         </tbody>
     </table>
+    {{-- {!! $productss->appends(Request::except('page'))->render() !!} --}}
 
 </div>
 @endsection

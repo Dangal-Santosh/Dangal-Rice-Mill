@@ -197,6 +197,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="pageNum"> 
+                {{ $orders->links() }}
+            </div>
         </div>
     </div>
 </div>

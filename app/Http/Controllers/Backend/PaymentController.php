@@ -11,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Payment;
 use App\Models\Order;
 use App\Models\Product;
+// use Srmklive\PayPal\Services\PayPal as PayPalClient; 
 
 
 
@@ -39,14 +40,14 @@ class PaymentController extends Controller
         $payment->payment_mode = $request->payment_mode;
         $payment->payment_id = $request->payment_id;
         $payment->save();
-        return redirect('homepage');
-
-
         if($request->payment_mode == "Paid With Paypal")
         {
             
-            return response()->json(['status'=>"Order Placed Successfully"]);
         }
+        return response()->json(['status'=>"Order Placed Successfully"]);
+        return redirect('homepage');
+
+
     }
 
     public function cashondelivery(Order $order){

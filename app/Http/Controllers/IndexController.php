@@ -152,18 +152,18 @@ class IndexController extends Controller
     public function productdetails(Request $request)
     {
         $product = Product::all();
+        // $productss = Product::sortable()->paginate(20);
         $in_stocks = InStock::all();
         $categories = Category::all();
         $finds = $request['finds'] ?? '';
         if ($finds != '') {
-            $products = Product::where('name', 'LIKE', "%$finds%")->get();
+            $products = Product::where('name', 'LIKE', "%$finds%")->get(); 
+            // $products = Product::where('name', 'LIKE', "%$finds%")->sortable()->paginate(5);
         } else {
             $products = Product::orderBy('id', 'Asc')->get();
         }
         return view(
-            'admin.Product.details',
-            compact('in_stocks', 'categories', 'products', 'product')
-        );
+            'admin.Product.details',compact('in_stocks', 'categories', 'products','product'));
     }
 
     public function paymentdetails(Request $request)

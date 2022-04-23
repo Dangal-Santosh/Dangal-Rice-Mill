@@ -54,7 +54,7 @@
             <td class="category_name">{{ $order->category_name }}</td>
             <td class="quantity">{{ $order->quantity }}</td>
             <td class="total">{{ $order->total }}</td>     
-            <td class="created_at">{{ $order->created_at }}</td>     
+            <td class="created_at">{{ $order->created_at->format('d-m-Y') }}</td>     
         </tr>
         <input type="hidden" name="user_id" value="{{ $order->user_id }}" class="user_id">
         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
@@ -67,7 +67,7 @@
             style="height:5vh"   href="{{   route('cashondelivery', $order) }}" id="cash_payment" >Cash on Delivery | COD </a><br><br>
         </div>
     </div>
-    <script src="https://www.paypal.com/sdk/js?client-id=AZb5niAPBcvae6yObV9yul3c3AgrYr1WWO7G2Y0bMIx9X5FyxGBFI_nay7CkqxgMYQLTZt374ir-uxzk&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}&currency=USD"></script>
     <script>
         paypal.Buttons({
           // Sets up the transaction when a payment button is clicked
@@ -123,10 +123,10 @@
                         swal(response.status);
                         window.location.href ="/homepage";
                     }
-                    error:function(xhr){
+                    // error:function(xhr){
 
-                        console.log(xhr.responseText);
-                    }
+                    //     console.log(xhr.responseText);
+                    // }
                 });
         });
         }

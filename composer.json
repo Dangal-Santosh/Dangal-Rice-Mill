@@ -10,6 +10,7 @@
         "barryvdh/laravel-dompdf": "^1.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^8.75",
         "laravel/jetstream": "^2.5",
         "laravel/sanctum": "^2.11",
@@ -20,6 +21,7 @@
         "realrashid/sweet-alert": "^5.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-medialibrary": "9.0.0",
+        "srmklive/paypal": "^3.0",
         "uxweb/sweet-alert": "^2.0"
     },
     "require-dev": {

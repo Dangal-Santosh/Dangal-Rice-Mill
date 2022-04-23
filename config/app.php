@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         // Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
