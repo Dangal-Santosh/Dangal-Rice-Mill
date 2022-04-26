@@ -7,7 +7,6 @@ use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\StockController;
-use App\Http\Controllers\Backend\TotalStockController;
 use App\Http\Controllers\Backend\OrderPDFController;
 use App\Http\Controllers\backend\PaymentController;
 use App\Http\Controllers\Backend\StockPDFController;
@@ -24,7 +23,8 @@ function () { return view('dashboard');})->name('dashboard');
 
 // Website Controllers
 Route::get('/',[IndexController::class,'welcome'])->name('welcome');
-Route::get('/homepage',[IndexController::class,'homeindex']);
+// Route::get('/homepage',[IndexController::class,'homeindex']);
+Route::get('/homepage',[IndexController::class,'homeindex'])->middleware('auth','verified');
 
 Route::get('/Adashboard',[IndexController::class,'Adashboard'])->name('Adashboard');
 Route::get('/sdashboard',[IndexController::class,'sdashboard'])->name('sdashboard');
@@ -65,12 +65,7 @@ Route::get('/edituser/{id}', [HomeController::class, 'editt'])->name('editt');
 Route::put('/edituser/{id}', [HomeController::class, 'updatee'])->name('updatee');
 Route::get('/deleteuser/{id}', [HomeController::class, 'destroyy'])->name('destroyy');
 
-//Total Stock Controllers
-Route::get('/stock',[TotalStockController::class,'index'])->name('index');
-Route::post('/stock',[TotalStockController::class,'create'])->name('create');
-Route::get('/editstock/{id}', [TotalStockController::class, 'edit'])->name('edit');
-Route::put('/editstock/{id}', [TotalStockController::class, 'update'])->name('update');
-Route::get('/deletestock/{id}', [TotalStockController::class, 'destroy'])->name('destroy');
+
 
 //Stock Controllers
 Route::get('/instock',[StockController::class,'Instockindex'])->name('Instockindex');

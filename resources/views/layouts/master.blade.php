@@ -56,7 +56,6 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item text-danger" href="{{ url('/instock') }}">InStock</a></li>
                   <li><a class="dropdown-item text-danger" href="{{ ('/piechart') }}">Instock Details</a></li>
-                  <li><a class="dropdown-item text-danger" href="{{ ('/stock') }}">Total Stock</a></li>
                 </ul>
             </li>
             <li class="dropdown">

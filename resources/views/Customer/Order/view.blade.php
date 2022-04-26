@@ -18,6 +18,13 @@
     <body>
     <br />
     <div class="container">
+        <a href="{{url('/buy_products')}}">
+            <div class="pt-2 pb-2">
+                <button class="btn btn-danger">
+                    Back
+                </button>
+            </div>
+        </a><br>
         <h3 align="center">Order Details</h3><br />
         <div class="row">
         <div class="col-md-7" align="right">

@@ -65,7 +65,6 @@ class IndexController extends Controller
         $users = User::where('roles', 'user')->get();
         $products = Product::all();
         $orders = Order::all();
-        $stocks = TotalStock::all();
         return view(
             'admin.Dashboard.dashboard', $arr,
             compact(
@@ -76,7 +75,6 @@ class IndexController extends Controller
                 'sum',
                 'total_orders',
                 'total_products',
-                'stocks',
                 'payments'
             )
         );
